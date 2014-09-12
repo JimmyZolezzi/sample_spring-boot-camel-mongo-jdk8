@@ -1,0 +1,28 @@
+ext {
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+}
+
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+}
+
+apply plugin: "wrapper"
+
+allprojects {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+
+  configurations {
+    all*.exclude(group: "commons-logging")
+  }
+}
+
+wrapper {
+  gradleVersion = "2.1"
+}

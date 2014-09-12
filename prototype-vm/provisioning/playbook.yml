@@ -1,0 +1,7 @@
+---
+ - hosts: all
+   sudo: yes
+   vars:
+     password: changeit
+   roles:
+     #- shell-utils

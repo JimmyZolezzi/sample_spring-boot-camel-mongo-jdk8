@@ -1,0 +1,34 @@
+task vmUp(type: Exec) {
+  description = "Runs the vagrant prototype-vm"
+  group = "Virtual machine"
+  commandLine "vagrant", "up"
+  workingDir "."
+}
+
+task vmSuspend(type: Exec) {
+  description = "Suspends the vagrant prototype-vm"
+  group = "Virtual machine"
+  commandLine "vagrant", "suspend"
+  workingDir "."
+}
+
+task vmResume(type: Exec) {
+  description = "Resumes the vagrant prototype-vm"
+  group = "Virtual machine"
+  commandLine "vagrant", "resume"
+  workingDir "."
+}
+
+task vmHalt(type: Exec) {
+  description = "Halts the vagrant prototype-vm"
+  group = "Virtual machine"
+  commandLine "vagrant", "halt"
+  workingDir "."
+}
+
+task vmDestroy(type: Exec) {
+  description = "Destroys the vagrant prototype-vm"
+  group = "Virtual machine"
+  commandLine "vagrant", "destroy"
+  workingDir "."
+}
