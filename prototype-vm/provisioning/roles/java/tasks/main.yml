@@ -1,0 +1,48 @@
+---
+- name: "Add webupd8team repository to APT"
+  shell:
+    echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee /etc/apt/sources.list.d/webupd8team-java.list
+  args:
+    creates: /etc/apt/sources.list.d/webupd8team-java.list
+
+- name: "List sources in webupd8team-java.list"
+  command:
+    less /etc/apt/sources.list.d/webupd8team-java.list
+  register:
+    webupList
+
+- name: "Add webupd8team repository to APT sources"
+  shell:
+    echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main" | tee -a /etc/apt/sources.list.d/webupd8team-java.list
+  when:
+    webupList.stdout.find('deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main') == -1
+
+- name: "List APT keys"
+  command:
+    sudo apt-key list
+  register:
+    aptKeys
+
+- name: "Add new APT keyserver"
+  shell:
+    sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+  when:
+    aptKeys.stdout.find('EEA14886') == -1
+
+- name: "Update APT cache"
+  apt:
+    update_cache=yes
+
+- name: "Auto accept the Oracle license"
+  shell:
+      echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | sudo /usr/bin/debconf-set-selections
+
+- name: "Install Oracle JDK-8"
+  apt:
+    name=oracle-java8-installer
+    state=present
+
+- name: "Set Oracle JDK-8 default"
+  apt:
+    name=oracle-java8-set-default
+    state=present

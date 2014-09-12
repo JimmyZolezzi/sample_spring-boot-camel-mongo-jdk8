@@ -4,4 +4,6 @@
    vars:
      password: changeit
    roles:
-     #- shell-utils
+     - shell-utils
+     - java
+     - mongodb
