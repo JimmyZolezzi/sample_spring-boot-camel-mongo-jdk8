@@ -4,35 +4,17 @@
   apt:
     update_cache=yes
 
-- name: "Install htop"
+- name: "Install bash utilities"
   apt:
     name=htop
     state=present
-
-- name: "Install wget"
-  apt:
-    name=wget
-    state=present
-
-- name: "Install curl"
-  apt:
-    name=curl
-    state=present
-
-- name: "Install w3m"
-  apt:
-    name=w3m
-    state=present
-
-- name: "Install unzip"
-  apt:
-    name=w3m
-    state=present
-
-- name: "Install ntp"
-  apt:
-    name=ntp
-    state=present
+  with_items:
+    - htop
+    - wget
+    - curl
+    - w3m
+    - unzip
+    - ntp
 
 - name: "Install latest vim"
   apt:

@@ -1,3 +1,29 @@
 ---
 
-- debug: msg="TODO install MongoDB"
+- name: "Update APT cache"
+  apt:
+    update_cache=yes
+
+- name: "Import the public key used by the package management system"
+  apt_key:
+    keyserver=keyserver.ubuntu.com
+    id=7F0CEB10
+    state=present
+
+- name: "Create a /etc/apt/sources.list.d/mongodb.list file for MongoDB"
+  apt_repository:
+    repo="deb http://downloads-distro.mongodb.org/repo/debian-sysvinit dist 10gen"
+    state="present"
+
+- name: "Installing MongoDB server"
+  apt:
+    name={{ item }}
+    state=present
+  with_items:
+    - mongodb=1:2.0.4-1ubuntu2.1
+
+- name: "Starting MongoDB"
+  service:
+    name=mongodb
+    state=restarted
+    enabled=yes

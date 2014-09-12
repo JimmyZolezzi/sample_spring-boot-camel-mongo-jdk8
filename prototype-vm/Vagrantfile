@@ -8,14 +8,14 @@ Vagrant.configure("2") do |config|
   config.vm.hostname = "prototype-vm"
 
   # Forward MongoDB port
-  #config.vm.network :forwarded_port, guest: 1521, host: 1521
+  config.vm.network :forwarded_port, guest: 27017, host: 27017
 
   config.vm.provider :virtualbox do |vb|
     # Use VBoxManage to customize the VM
     vb.gui = false
     vb.name = "prototype-vm"
-    vb.memory = 4096
-    vb.cpus = 4
+    vb.memory = 2048
+    vb.cpus = 2
     vb.customize ["modifyvm", :id,
                   "--name", "prototype-vm",
                   "--natdnshostresolver1", "on"]

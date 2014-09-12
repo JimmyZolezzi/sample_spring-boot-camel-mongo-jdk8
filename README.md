@@ -28,5 +28,5 @@ we use [Ansible](http://www.ansible.com/home).
 The VM provisioning by Ansible is organized into roles. The following roles are currently present:
 
 * `shell-utils` - A role for installing collection of common bash utilities like `vim`, `htop`, `curl`, `wget`, ...
-* `java` - A role for installing Oracle JDK-8 via APT
+* `java` - A role for installing Oracle JDK-8 via APT. Please note that this non-interactive installation automatically accepts the Oracle license agreement.
 * `mongodb` - Still to be done.
