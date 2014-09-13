@@ -33,7 +33,7 @@ public final class PrototypeApplication {
     SpringApplication application = new SpringApplication(PrototypeApplication.class);
     application.setHeadless(true);
     application.setRegisterShutdownHook(true);
-    application.setLogStartupInfo(true);
+    application.setLogStartupInfo(false);
     application.setWebEnvironment(true);
     application.addListeners(new ApplicationPidListener(PID_FILE));
     application.run(args);
