@@ -1,3 +1,14 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    jcenter()
+  }
+
+  dependencies {
+    classpath "com.github.townsfolk:gradle-release:1.2"
+  }
+}
+
 ext {
   assertjVersion = "1.6.1"
   guavaVersion = "18.0"
@@ -10,6 +21,7 @@ ext {
 }
 
 apply plugin: "wrapper"
+apply plugin: "release"
 
 allprojects {
   repositories {
@@ -25,3 +37,9 @@ allprojects {
 wrapper {
   gradleVersion = "2.1"
 }
+
+release {
+  requireBranch = "release"
+}
+
+createReleaseTag.dependsOn(":prototype-app:test")

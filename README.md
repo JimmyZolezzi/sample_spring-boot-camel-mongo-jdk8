@@ -1,7 +1,5 @@
 # SPRING-BOOT-CAMEL-MONGO-JDK8
 
----
-
 ## General
 Sample Spring Boot application that hosts the following features:
 
