@@ -1,13 +1,12 @@
 ext {
-  sourceCompatibility = 1.8
-  targetCompatibility = 1.8
-}
-
-buildscript {
-  repositories {
-    mavenLocal()
-    mavenCentral()
-  }
+  assertjVersion = "1.6.1"
+  guavaVersion = "18.0"
+  jettyVersion = "9.1.4.v20140401"
+  logbackVersion = "1.1.2"
+  mockitoVersion = "1.9.5"
+  slf4jVersion = "1.7.7"
+  springBootVersion = "1.1.6.RELEASE"
+  testngVersion = "6.8.8"
 }
 
 apply plugin: "wrapper"

@@ -1,0 +1,47 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+
+  dependencies {
+    classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+  }
+}
+
+apply plugin: "java"
+apply plugin: "spring-boot"
+
+dependencies {
+  // Spring boot
+  compile "org.springframework.boot:spring-boot-actuator:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-logging:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-tomcat:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+
+  // Utils
+  compile "com.google.guava:guava:$guavaVersion"
+
+  // Testing
+  testCompile "org.testng:testng:$testngVersion"
+  testCompile "org.assertj:assertj-core:$assertjVersion"
+  testCompile "org.mockito:mockito-core:$mockitoVersion"
+}
+
+test {
+  useTestNG()
+
+  minHeapSize = "128m"
+  maxHeapSize = "512m"
+}
+
+jar {
+  manifest {
+    attributes(
+        "Implementation-Title": "com.ewerk.prototype.Application",
+        "Implementation-Version": version,
+        "Built-JDK": System.getProperty("java.version"),
+        "Built-Gradle": gradle.gradleVersion
+    )
+  }
+}
