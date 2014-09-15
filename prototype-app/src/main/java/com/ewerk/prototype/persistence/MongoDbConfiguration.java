@@ -33,10 +33,10 @@ public class MongoDbConfiguration {
    */
   @Bean
   public MongoClientOptions mongoClientOptions(
-    @Value("${spring.data.mongodb.min.connections:2}") final int minConnections,
-    @Value("${spring.data.mongodb.max.connections:10}") final int maxConnections,
-    @Value("${spring.data.mongodb.socket.connect.ms:5000}") final int connectTimeout,
-    @Value("${spring.data.mongodb.socket.timeout.ms:5000}") final int socketTimeout) {
+    @Value("${spring.data.mongodb.min-connections:2}") final int minConnections,
+    @Value("${spring.data.mongodb.max-connections:10}") final int maxConnections,
+    @Value("${spring.data.mongodb.socket-connect.ms:5000}") final int connectTimeout,
+    @Value("${spring.data.mongodb.socket-timeout.ms:5000}") final int socketTimeout) {
 
     return MongoClientOptions.builder()
       .legacyDefaults()
