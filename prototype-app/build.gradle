@@ -15,6 +15,7 @@ apply plugin: "spring-boot"
 dependencies {
   // Spring boot
   compile "org.springframework.boot:spring-boot-actuator:$springBootVersion"
+  compile "org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion"
   compile "org.springframework.boot:spring-boot-starter-logging:$springBootVersion"
   compile "org.springframework.boot:spring-boot-starter-jetty:$springBootVersion"
   compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion") {

@@ -1,0 +1,14 @@
+---
+
+- name: Copying check script
+  copy: src=check_user.js dest=/home/vagrant
+
+- name: Checking MongoDB user existance
+  command: mongo localhost:27017/prototype_db check_user.js chdir=/home/vagrant
+  register: mongo_user
+
+- name: Copying create user script
+  copy: src=create_user.js dest=/home/vagrant
+- name: Create MongoDB user
+  command: mongo localhost:27017/prototype_db create_user.js chdir=/home/vagrant
+  when: mongo_user.stdout.find('auth failed') != -1

@@ -20,10 +20,16 @@
     name={{ item }}
     state=present
   with_items:
-    - mongodb=1:2.0.4-1ubuntu2.1
+    - mongodb-org={{mongoVersion}}
+
+- name: "Configuring MongoDB bind IP"
+  lineinfile:
+    dest=/etc/mongod.conf
+    regexp=^bind_ip
+    line='bind_ip = 0.0.0.0'
 
 - name: "Starting MongoDB"
   service:
-    name=mongodb
+    name=mongod
     state=restarted
     enabled=yes
