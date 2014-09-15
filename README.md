@@ -50,10 +50,10 @@ The VM provisioning by Ansible is organized into roles. The following roles are 
 * `prototype` - A role that install/sets up all stuff needed by the `prototype-app`, e.g. accounts, permissions, ...
 
 ## Things to come
+* __[DONE]__ ~~Connection pooling for MongoDB~~
 * Apache Camel route for data export (with scheduled quartz trigger)
 * Spring WebMVC REST controller for data access
 * Google AutoValue for bean types
-* Connection pooling for MongoDB
 * QueryDSL support
 * Integration test module
 * Optionally: Spring security with java config
