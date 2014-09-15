@@ -1,9 +1,22 @@
 # SPRING-BOOT-CAMEL-MONGO-JDK8
 
 ## Introduction
-Sample Spring Boot application that hosts the following features:
+Sample Spring Boot application that integrates some of the most commonly used top-notch frameworks 
+in the Java ecosystem. The example is also used for experimenting with all these frameworks, in
+order to create a lightweight enterprise service, that runs independently from an external 
+container but still provides enterprise ready features. The following requirements will be 
+fulfilled by the app.
+ 
+* Standalone application
+* REST API via embedded servlet container
+* MongoDB used as data store
+* TX management
+* Vagrant+Ansible VM for development ease
+* Multi module build, with profile activated integration tests
 
-## Used libraries
+Please see the issues section for upcoming features and bugs.
+
+## Used libraries (so far)
 ### General
 * [JDK-8](http://www.oracle.com/technetwork/java/javase/downloads)
 * [Gradle-2.1](http://www.gradle.org) multi module project
@@ -48,12 +61,3 @@ The VM provisioning by Ansible is organized into roles. The following roles are 
 * `java` - A role for installing Oracle JDK-8 via APT. Please note that this non-interactive installation automatically accepts the Oracle license agreement.
 * `mongodb` - A role that install and configures the MongoDB server
 * `prototype` - A role that install/sets up all stuff needed by the `prototype-app`, e.g. accounts, permissions, ...
-
-## Things to come
-* __[DONE]__ ~~Connection pooling for MongoDB~~
-* Apache Camel route for data export (with scheduled quartz trigger)
-* Spring WebMVC REST controller for data access
-* Google AutoValue for bean types
-* QueryDSL support
-* Integration test module
-* Optionally: Spring security with java config
