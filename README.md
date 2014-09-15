@@ -8,7 +8,7 @@ Sample Spring Boot application that hosts the following features:
 * [JDK-8](http://www.oracle.com/technetwork/java/javase/downloads)
 * [Gradle-2.1](http://www.gradle.org) multi module project
 * [MongoDB](http://www.mongodb.org) for data persistence
-* [Spring Boot]()
+* [Spring Boot](http://projects.spring.io/spring-boot)
 
 ### Persistence
 * [spring-data-mongodb](http://projects.spring.io/spring-data-mongodb)
