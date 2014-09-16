@@ -42,7 +42,7 @@ Gradle standalone, because the project uses the Gradle wrapper.
 * Download and install Oracle JDK-8
 * Download and install Ansible
 
-### Global project task
+### Global project tasks
 Run the following commands/tasks to get a starting point for the project (ensure `gradlew` is executable).
 * `gradlew tasks` - Show a list of all available tasks
 
