@@ -30,23 +30,31 @@ Please see the issues section for upcoming features and bugs.
 * [Guava](https://code.google.com/p/guava-libraries)
 
 ### Testing
-* [TestNG](http://testng.org)
-* [Mockito](https://code.google.com/p/mockito)
-* [AssertJ](http://joel-costigliola.github.io/assertj)
+* [TestNG](http://testng.org) - Testing framework/Test runner
+* [Mockito](https://code.google.com/p/mockito) - Library for creating mock objects/behaviour for unit tests
+* [AssertJ](http://joel-costigliola.github.io/assertj) - Fluent assertions for Java
 
 ## Building the project
-The project is organized as a polyglot gradle multi-module project.
+The project is organized as a polyglot gradle multi-module project. You do not have to download 
+Gradle standalone, because the project uses the Gradle wrapper.
 
 ### Prerequisites
-* JDK-8
-* Ansible
+* Download and install Oracle JDK-8
+* Download and install Ansible
 
 ### Global project task
 Run the following commands/tasks to get a starting point for the project
 * `gradle tasks` - Show a list of all available tasks
 
 ### Module specific tasks
-A description of some module specific tasks will be added after the modules have been added.
+#### prototype-vm
+* `gradle vagrantUp` or native command `vagrant up` for running the VM
+* `gradle vagrantHalt` or native command `vagrant halt` for halting the VM
+* native command `vagrant ssh` for connecting to the VM via SSH
+#### prototype-app
+* `gradle bootRun` to run the prototype app from the command line
+* `gradle test` run the unit tests
+* `gradle [clean] build` runs a full build 
 
 ## Development virtual machine
 The sample provides a [Debian](http://www.debian.org) Wheezy based [Vagrant](http://www.vagrantup.com) 

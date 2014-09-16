@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * This configuration class is used to setup the connection to the MongoDB instance. Here we should
@@ -19,8 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @Configuration
 @EnableMongoRepositories
-@EnableTransactionManagement
-public class MongoDbConfiguration {
+public class PersistenceConfiguration {
 
   /**
    * Customize the MongoDB client connection properties.

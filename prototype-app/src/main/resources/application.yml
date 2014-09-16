@@ -31,3 +31,12 @@ server:
   address: 127.0.0.1
   port: 9090
   context-path: /prototype
+
+# Customise active actuator endpoints
+endpoints:
+  configprops:
+    enabled: false
+  info:
+    enabled: false
+  shutdown:
+    enabled: false

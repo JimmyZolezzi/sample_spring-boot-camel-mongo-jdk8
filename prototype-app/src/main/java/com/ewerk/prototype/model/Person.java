@@ -17,14 +17,12 @@ public class Person {
   @Id
   private String id;
 
-  private final String firstName;
+  private String firstName;
 
   @Indexed
-  private final String lastName;
+  private String lastName;
 
-  public Person(final String firstName, final String lastName) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  public Person() {
   }
 
   public String getId() {
@@ -39,16 +37,24 @@ public class Person {
     return firstName;
   }
 
+  public void setFirstName(final String firstName) {
+    this.firstName = firstName;
+  }
+
   public String getLastName() {
     return lastName;
+  }
+
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
   }
 
   @Override
   public String toString() {
     return MoreObjects.toStringHelper(this)
       .add("id", id)
-      .add("firstName", firstName)
       .add("lastName", lastName)
+      .add("firstName", firstName)
       .toString();
   }
 }
