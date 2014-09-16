@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.system.ApplicationPidListener;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
  * This is the application entry point. Utilizing the main method makes it easy to run/debug the
@@ -21,9 +22,10 @@ import org.springframework.context.annotation.ComponentScan;
  * @author h.stolzenberg
  * @since 0.0.1
  */
+@Configuration
 @ComponentScan
 @EnableAutoConfiguration
-public final class PrototypeApplication {
+public class PrototypeApplication {
 
   private static final Logger LOG = LoggerFactory.getLogger(LoggerFactory.class);
 
