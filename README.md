@@ -51,6 +51,7 @@ Run the following commands/tasks to get a starting point for the project (ensure
 * `gradlew vagrantUp` or native command `vagrant up` for running the VM
 * `gradlew vagrantHalt` or native command `vagrant halt` for halting the VM
 * native command `vagrant ssh` for connecting to the VM via SSH
+
 #### prototype-app
 * `gradlew bootRun` to run the prototype app from the command line
 * `gradlew test` run the unit tests
