@@ -43,18 +43,18 @@ Gradle standalone, because the project uses the Gradle wrapper.
 * Download and install Ansible
 
 ### Global project task
-Run the following commands/tasks to get a starting point for the project
-* `gradle tasks` - Show a list of all available tasks
+Run the following commands/tasks to get a starting point for the project (ensure `gradlew` is executable).
+* `gradlew tasks` - Show a list of all available tasks
 
 ### Module specific tasks
 #### prototype-vm
-* `gradle vagrantUp` or native command `vagrant up` for running the VM
-* `gradle vagrantHalt` or native command `vagrant halt` for halting the VM
+* `gradlew vagrantUp` or native command `vagrant up` for running the VM
+* `gradlew vagrantHalt` or native command `vagrant halt` for halting the VM
 * native command `vagrant ssh` for connecting to the VM via SSH
 #### prototype-app
-* `gradle bootRun` to run the prototype app from the command line
-* `gradle test` run the unit tests
-* `gradle [clean] build` runs a full build 
+* `gradlew bootRun` to run the prototype app from the command line
+* `gradlew test` run the unit tests
+* `gradlew [clean] build` runs a full build 
 
 ## Development virtual machine
 The sample provides a [Debian](http://www.debian.org) Wheezy based [Vagrant](http://www.vagrantup.com) 
