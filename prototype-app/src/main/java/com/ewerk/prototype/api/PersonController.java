@@ -1,9 +1,8 @@
 package com.ewerk.prototype.api;
 
-import static com.google.common.base.Preconditions.checkArgument;
-
 import com.ewerk.prototype.model.Person;
 import com.ewerk.prototype.persistence.repositories.PersonRepository;
+import com.ewerk.prototype.persistence.repositories.PersonRepositoryCustom;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +33,9 @@ public class PersonController {
   @Autowired
   private PersonRepository personRepository;
 
+  @Autowired
+  private PersonRepositoryCustom personRepositoryCustom;
+
   @RequestMapping(value = "/all", method = RequestMethod.GET)
   public List<Person> findAll() {
     return personRepository.findAll();
@@ -42,18 +44,7 @@ public class PersonController {
   @RequestMapping(value = "/create/{lastName}/{firstName}", method = RequestMethod.GET)
   public ResponseEntity<Person> create(@PathVariable final String lastName,
     @PathVariable final String firstName) {
-    checkArgument(lastName != null && !lastName.isEmpty(),
-      "The argument 'lastName' must not be null or empty.");
-    checkArgument(firstName != null && !firstName.isEmpty(),
-      "The argument 'firstName' must not be null or empty.");
-
-    // TODO h.stolzenberg: only store person if not already present, but first integrate QueryDSL
-    final Person person = new Person();
-    person.setLastName(lastName);
-    person.setFirstName(firstName);
-
-    Person saved = personRepository.save(person);
-    return new ResponseEntity<>(saved, HttpStatus.OK);
+    return new ResponseEntity<>(personRepositoryCustom.create(lastName, firstName), HttpStatus.OK);
   }
 
   @RequestMapping(value = "/truncate", method = RequestMethod.GET)
