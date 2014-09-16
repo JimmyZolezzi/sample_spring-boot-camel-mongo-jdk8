@@ -22,10 +22,6 @@ spring:
       connect-timeout: 5000
       socket-timeout: 5000
 
-# Logging configuration stuff
-logging:
-  config: classpath:/logback.xml
-
 # The embedded server settings
 server:
   address: 127.0.0.1
