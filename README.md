@@ -80,7 +80,7 @@ The VM provisioning by Ansible is organized into roles. The following roles are 
 
 ## Integration testing
 The integration test suite is organized into a own gradle sub module `prototype-integration-tests`.
-In our opinion this holds the following advantages, but is subject of discussion.
+In our opinion this holds the following advantages, but is still subject to discussion.
 
 * Divide unit test and integration test sources
 * More easy build config (execution)
@@ -88,7 +88,7 @@ In our opinion this holds the following advantages, but is subject of discussion
 * Leverage default Gradle `test` configuration, no need for additional sourceSets etc.
 
 The suite is based on the [Spring Testing Framework](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/testing.html)
-brought in via `spring-boot-starter-test`. It launches the complete spring boot application,
+brought in via `spring-boot-starter-test`. It launches the complete Spring Boot application,
 having specific configuration property overrides for the integration tests. These overrides
 are triggered because of the additional active profile `integration-test` from the base integration
 test class
@@ -100,7 +100,7 @@ required Gradle property to activate the integration tests):
 `$> gradle -P integration [clean] test`
 
 The REST API integration tests are run against a embedded Jetty container. The container boots with 
-a random port number to avoid port collisions with running systems, what gets really interesting
+a random port number to avoid collisions with running systems, what gets really interesting
 on CI environments.
 
 Also you should have a look at AbstractIntegTest class, which is the fundamental heart of the 
