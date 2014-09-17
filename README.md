@@ -50,6 +50,11 @@ Gradle standalone, because the project uses the Gradle wrapper.
 * Download and install Oracle JDK-8
 * Download and install Ansible
 
+### Configuration
+The `prototype-app` default configuration files (application.properties, logback.xml) are located under `src/main/resources`. This configuration is always active per default. It may be overridden by defining the `SPRING_CONFIG_LOCATION` environment property.
+
+The integration test suite hosts an own application.properties file that overrides some properties (database URI) in order to run the integration tests against the test environment.
+
 ### Global project tasks
 Run the following commands/tasks to get a starting point for the project (ensure `gradlew` is executable).
 * `gradlew tasks` - Show a list of all available tasks
@@ -63,7 +68,10 @@ Run the following commands/tasks to get a starting point for the project (ensure
 #### prototype-app
 * `gradlew bootRun` to run the prototype app from the command line
 * `gradlew test` run the unit tests
-* `gradlew [clean] build` runs a full build 
+* `gradlew [clean] build` runs a full build
+
+#### prototype-integration-test
+* `gradlew -P integration [clean] test` runs the integration test suite
 
 ## Development virtual machine
 The sample provides a [Debian 7](http://www.debian.org) (Wheezy) based [Vagrant](http://www.vagrantup.com) 
