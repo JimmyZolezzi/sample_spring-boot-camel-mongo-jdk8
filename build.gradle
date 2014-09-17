@@ -44,3 +44,4 @@ release {
 }
 
 createReleaseTag.dependsOn(":prototype-app:test")
+createReleaseTag.dependsOn(":prototype-integration-test:test")
