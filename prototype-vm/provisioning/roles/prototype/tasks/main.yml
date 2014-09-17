@@ -9,6 +9,11 @@
 
 - name: Copying create user script
   copy: src=create_user.js dest=/home/vagrant
-- name: Create MongoDB user
-  command: mongo localhost:27017/prototype_db create_user.js chdir=/home/vagrant
-  when: mongo_user.stdout.find('auth failed') != -1
+
+- name: Create MongoDB user prototype@prototype_db_dev
+  command: mongo localhost:27017/prototype_db_dev create_user.js chdir=/home/vagrant
+  #when: mongo_user.stdout.find('auth failed') != -1
+
+- name: Create MongoDB user prototype@prototype_db_integration_test
+  command: mongo localhost:27017/prototype_db_integration_test create_user.js chdir=/home/vagrant
+  #when: mongo_user.stdout.find('auth failed') != -1

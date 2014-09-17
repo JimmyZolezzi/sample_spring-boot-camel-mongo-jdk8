@@ -3,6 +3,7 @@ package com.ewerk.prototype.persistence.repositories;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import com.ewerk.prototype.model.Person;
+import com.ewerk.prototype.persistence.UniqueViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +30,15 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
     checkArgument(firstName != null && !firstName.isEmpty(),
       "The argument 'firstName' must not be null or empty.");
 
+    if (personRepository.findByLastNameAndFirstName(lastName, firstName) != null) {
+      throw new UniqueViolationException("Person '%s, %s' already exists.", lastName, firstName);
+    }
+
     final Person person = new Person();
     person.setLastName(lastName);
     person.setFirstName(firstName);
 
     LOG.debug("Created: {}", person);
-
     return personRepository.save(person);
   }
 }

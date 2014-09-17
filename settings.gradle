@@ -1,2 +1,3 @@
 rootProject.name = "prototype"
-include "prototype-vm", "prototype-app"
+include "prototype-vm", "prototype-app", "prototype-integration-test"
+

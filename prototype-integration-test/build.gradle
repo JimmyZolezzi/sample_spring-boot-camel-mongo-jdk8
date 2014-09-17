@@ -1,0 +1,39 @@
+buildscript {
+  repositories {
+    mavenLocal()
+    mavenCentral()
+  }
+}
+
+apply plugin: "java"
+
+dependencies {
+  testCompile project(":prototype-app")
+
+  // spring-boot test helper library
+  testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+
+  // other testing libs
+  testCompile "org.testng:testng:$testngVersion"
+  testCompile "org.mockito:mockito-core:$mockitoVersion"
+  testCompile "org.assertj:assertj-core:$assertjVersion"
+}
+
+compileJava {
+  options.encoding = "UTF-8"
+}
+
+test {
+  useTestNG()
+
+  onlyIf {
+    project.hasProperty("integration")
+  }
+
+  minHeapSize = "128m"
+  maxHeapSize = "512m"
+
+  //testLogging.showStandardStreams = true
+}
+
+test.dependsOn(":prototype-app:test")

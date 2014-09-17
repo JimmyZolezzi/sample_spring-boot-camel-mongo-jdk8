@@ -29,9 +29,9 @@ allprojects {
     mavenCentral()
   }
 
-  configurations {
-    all*.exclude(group: "commons-logging")
-  }
+  configurations.all({ conf ->
+    conf.exclude group: "commons-logging"
+  })
 }
 
 wrapper {

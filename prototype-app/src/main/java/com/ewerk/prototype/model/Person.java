@@ -12,7 +12,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
  * @since 0.0.2
  */
 @Document
-public class Person {
+public final class Person {
 
   @Id
   private String id;
@@ -47,6 +47,29 @@ public class Person {
 
   public void setLastName(final String lastName) {
     this.lastName = lastName;
+  }
+
+  @Override
+  public boolean equals(final Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+
+    final Person person = (Person) o;
+
+    return firstName.equals(person.firstName) && id.equals(person.id) && lastName.equals(
+      person.lastName);
+  }
+
+  @Override
+  public int hashCode() {
+    int result = id.hashCode();
+    result = 31 * result + firstName.hashCode();
+    result = 31 * result + lastName.hashCode();
+    return result;
   }
 
   @Override
