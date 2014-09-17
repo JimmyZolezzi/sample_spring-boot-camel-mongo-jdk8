@@ -27,10 +27,10 @@ Please see the issues section for upcoming features and bugs.
 ### General
 * [JDK-8](http://www.oracle.com/technetwork/java/javase/downloads)
 * [Gradle-2.1](http://www.gradle.org) multi module project
-* [MongoDB](http://www.mongodb.org) for data persistence
 * [Spring Boot](http://projects.spring.io/spring-boot)
 
 ### Persistence
+* [MongoDB](http://www.mongodb.org) for data persistence
 * [spring-data-mongodb](http://projects.spring.io/spring-data-mongodb)
 
 ### Utilities
@@ -40,6 +40,7 @@ Please see the issues section for upcoming features and bugs.
 * [TestNG](http://testng.org) - Testing framework/Test runner
 * [Mockito](https://code.google.com/p/mockito) - Library for creating mock objects/behaviour for unit tests
 * [AssertJ](http://joel-costigliola.github.io/assertj) - Fluent assertions for Java
+* [REST-assured](https://code.google.com/p/rest-assured) - Easy testing of REST endpoints
 
 ## Building the project
 The project is organized as a polyglot gradle multi-module project. You do not have to download 
@@ -105,3 +106,5 @@ on CI environments.
 
 Also you should have a look at AbstractIntegTest class, which is the fundamental heart of the 
 integration test suite. It took some time figuring out getting all set up using the TestNG runner.
+
+REST-assured framework provides a fluent DSL for easily testing REST endpoints.

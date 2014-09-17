@@ -1,9 +1,8 @@
 package com.ewerk.prototype.api;
 
 import com.ewerk.prototype.AbstractIntegTest;
+import com.jayway.restassured.RestAssured;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.TestRestTemplate;
-import org.springframework.web.client.RestTemplate;
 import org.testng.annotations.BeforeClass;
 
 /**
@@ -23,12 +22,9 @@ abstract class AbstractApiIntegTest extends AbstractIntegTest {
   @Value("${local.server.port}")
   private int port;
 
-  // TODO h.stolzenberg: Use RestAssured framework
-  private RestTemplate testRestTemplate = new TestRestTemplate();
-
   @BeforeClass
   public void setupRestAssured() {
-    // TODO h.stolzenberg: set port for RestAssured
+    RestAssured.port = port();
   }
 
   protected final int port() {
@@ -39,21 +35,13 @@ abstract class AbstractApiIntegTest extends AbstractIntegTest {
     return contextPath;
   }
 
-  protected final String baseUrl() {
-    return String.format("http://localhost:%d%s", port(), contextPath());
-  }
-
   protected final String url(String path) {
     String tmp = path != null ? path : "";
     if (!tmp.startsWith("/")) {
       tmp = "/" + tmp;
     }
-    final String url = baseUrl() + tmp;
+    final String url = contextPath() + tmp;
     LOG.debug("Url: {}", url);
     return url;
-  }
-
-  public RestTemplate testRestTemplate() {
-    return testRestTemplate;
   }
 }

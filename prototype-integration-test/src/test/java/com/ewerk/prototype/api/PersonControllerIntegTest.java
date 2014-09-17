@@ -1,5 +1,6 @@
 package com.ewerk.prototype.api;
 
+import static com.jayway.restassured.RestAssured.expect;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.ewerk.prototype.model.Person;
@@ -39,17 +40,22 @@ public class PersonControllerIntegTest extends AbstractApiIntegTest {
   }
 
   @Test
+  @SuppressWarnings("unchecked")
   public void testAll() throws Exception {
-
-    final String requestUrl = url("/api/persons/all");
-    @SuppressWarnings("unchecked") List<Person> loaded =
-      testRestTemplate().getForObject(requestUrl, List.class);
-    assertThat(loaded).hasSize(2);
+    //@formatter:off
+    List<Person> persons =
+      expect()
+        .statusCode(200).and().contentType("application/json")
+        .when()
+          .get(url("/api/persons/all"))
+          .as(List.class);
+    //@formatter:on
+    assertThat(persons).hasSize(2);
   }
 
   @Test
   public void testTruncate() throws Exception {
-    final String requestUrl = url("/api/persons/truncate");
-    assertThat(testRestTemplate().getForObject(requestUrl, Object.class)).isNull();
+    Object response = expect().statusCode(200).get(url("/api/persons/truncate"));
+    assertThat(response).isNotNull();
   }
 }
