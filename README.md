@@ -66,7 +66,7 @@ Run the following commands/tasks to get a starting point for the project (ensure
 * `gradlew [clean] build` runs a full build 
 
 ## Development virtual machine
-The sample provides a [Debian](http://www.debian.org) Wheezy based [Vagrant](http://www.vagrantup.com) 
+The sample provides a [Debian 7](http://www.debian.org) (Wheezy) based [Vagrant](http://www.vagrantup.com) 
 VM that hosts the MongoDB used. The MongoDB ports are forwarded to your localhost. The VM is located 
 in the Gradle module `prototype-vm`. In order to start the VM, go to `prototype-vm` a 
 type `vagrant up`. The command `vagrant halt` will stop the VM. For provisioning, 
