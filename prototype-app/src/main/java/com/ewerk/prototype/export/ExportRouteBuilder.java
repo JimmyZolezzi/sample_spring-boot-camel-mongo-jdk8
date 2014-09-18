@@ -3,6 +3,7 @@ package com.ewerk.prototype.export;
 import com.ewerk.prototype.export.handler.ClearMdcHandler;
 import com.ewerk.prototype.export.handler.ExportHandler;
 import com.ewerk.prototype.export.handler.InitMdcHandler;
+import com.ewerk.prototype.export.util.Routes;
 import com.ewerk.prototype.export.util.UriBuilder;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.spring.SpringRouteBuilder;
@@ -27,7 +28,8 @@ import java.util.UUID;
 public class ExportRouteBuilder extends SpringRouteBuilder {
   private static final Logger LOG = LoggerFactory.getLogger(ExportRouteBuilder.class);
 
-  private static final String MDC_ROUTE_ID_KEY = "routeId";
+  private static final String MDC_ROUTE_ID = "routeId";
+  private static final String MDC_UID = "uid";
 
   private static final String ROUTE_LABEL = "export";
 
@@ -50,17 +52,13 @@ public class ExportRouteBuilder extends SpringRouteBuilder {
     //@formatter:off
     from(UriBuilder.quartz(ROUTE_LABEL, exportCronExp))
       .autoStartup(schedulerAutoStart)
-      .routeId(routeId())
-        .bean(new InitMdcHandler(MDC_ROUTE_ID_KEY, ROUTE_LABEL))
+      .routeId(Routes.id(ExportRouteBuilder.class,ROUTE_LABEL))
+        .bean(new InitMdcHandler(MDC_ROUTE_ID, ROUTE_LABEL))
+        .bean(new InitMdcHandler(MDC_UID, uid))
         .log(LoggingLevel.DEBUG, getClass().getCanonicalName(), String.format("Triggered: %s", uid))
         .bean(lookup(ExportHandler.class))
         .log(LoggingLevel.DEBUG, getClass().getCanonicalName(), String.format("Finished: %s", uid))
         .bean(new ClearMdcHandler());
       //@formatter:on
-  }
-
-  private String routeId() {
-    return String.format("[prototype/%s/%s]", ExportRouteBuilder.class.getCanonicalName(),
-      ROUTE_LABEL);
   }
 }
