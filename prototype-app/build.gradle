@@ -26,6 +26,13 @@ dependencies {
   compile "org.eclipse.jetty:jetty-webapp:$jettyVersion"
   compile "org.eclipse.jetty:jetty-jsp:$jettyVersion"
 
+  // Camel
+  compile("org.apache.camel:camel-spring-javaconfig:$camelVersion")
+  //    {
+  //  exclude group: "org.springframework", module: "spring-test"
+  //}
+  compile "org.apache.camel:camel-quartz2:$camelVersion"
+
   // Utils
   compile "com.google.guava:guava:$guavaVersion"
 

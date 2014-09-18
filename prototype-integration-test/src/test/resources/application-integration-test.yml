@@ -11,3 +11,9 @@ spring:
       uri: mongodb://prototype:changeit@localhost:27017/prototype_db_integration_test
 
 # --------------------------------------------------------------------------------------------------
+
+# Scheduler configuration
+scheduler:
+  auto-start: false
+
+# --------------------------------------------------------------------------------------------------

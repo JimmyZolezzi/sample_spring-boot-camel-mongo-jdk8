@@ -11,6 +11,7 @@ buildscript {
 
 ext {
   assertjVersion = "1.6.1"
+  camelVersion = "2.13.2"
   guavaVersion = "18.0"
   jettyVersion = "9.1.4.v20140401"
   logbackVersion = "1.1.2"

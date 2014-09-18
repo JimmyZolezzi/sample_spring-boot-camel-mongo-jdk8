@@ -6,7 +6,7 @@
   </contextListener>
 
   <property name="CONSOLE_LOG_PATTERN"
-      value="%cyan(%d{HH:mm:ss.SSS}) | %magenta(%-42thread{12}) | %green(%-40logger{35}) | %-4L | %highlight(%-5level) | %X{label} | %X{uid} - %boldWhite(%m) %ex %n"/>
+      value="%cyan(%d{HH:mm:ss.SSS}) | %magenta(%-42thread{12}) | %green(%-40logger{35}) | %-4L | %highlight(%-5level) | %X{routeId} | %X{uid} - %boldWhite(%m) %ex %n"/>
 
   <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
     <encoder>
