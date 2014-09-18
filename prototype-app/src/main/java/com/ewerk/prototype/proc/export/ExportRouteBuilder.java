@@ -1,19 +1,21 @@
 package com.ewerk.prototype.proc.export;
 
+import static com.ewerk.prototype.proc.util.Routes.MDC_ROUTE_ID;
+import static com.ewerk.prototype.proc.util.Routes.MDC_UID;
+import static com.ewerk.prototype.proc.util.Routes.id;
+import static com.ewerk.prototype.proc.util.Routes.processId;
+
 import com.ewerk.prototype.proc.export.handler.ClearMdcHandler;
 import com.ewerk.prototype.proc.export.handler.ExportHandler;
 import com.ewerk.prototype.proc.export.handler.InitMdcHandler;
-import com.ewerk.prototype.proc.util.Routes;
+import com.ewerk.prototype.proc.util.AbstractQuartzRouteBuilder;
 import com.ewerk.prototype.proc.util.UriBuilder;
 import org.apache.camel.LoggingLevel;
-import org.apache.camel.spring.SpringRouteBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-
-import java.util.UUID;
 
 /**
  * Camel route builder the creates the main export route. Currently it just sets up quartz, the
@@ -25,40 +27,32 @@ import java.util.UUID;
  * @since 0.0.4
  */
 @Component
-public class ExportRouteBuilder extends SpringRouteBuilder {
+public class ExportRouteBuilder extends AbstractQuartzRouteBuilder {
   private static final Logger LOG = LoggerFactory.getLogger(ExportRouteBuilder.class);
-
-  private static final String MDC_ROUTE_ID = "routeId";
-  private static final String MDC_UID = "uid";
 
   private static final String ROUTE_LABEL = "export";
 
-  private final String exportCronExp;
-  private final boolean schedulerAutoStart;
-
   @Autowired
-  public ExportRouteBuilder(@Value("${scheduler.cron-exp-export}") final String exportCronExp,
+  public ExportRouteBuilder(@Value("${scheduler.cron-exp-export}") final String cronExpExport,
     @Value("${scheduler.auto-start}") final boolean schedulerAutoStart) {
-    this.exportCronExp = exportCronExp;
-    this.schedulerAutoStart = schedulerAutoStart;
+    super(cronExpExport, schedulerAutoStart);
   }
 
   @Override
   public void configure() throws Exception {
     LOG.info("Configure {} route", ROUTE_LABEL);
 
-    final String routeId = Routes.id(ExportRouteBuilder.class, ROUTE_LABEL);
-    final String processId = UUID.randomUUID().toString();
+    final String routeId = id(ExportRouteBuilder.class, ROUTE_LABEL);
 
     //@formatter:off
-    from(UriBuilder.quartz(ROUTE_LABEL, exportCronExp))
-      .autoStartup(schedulerAutoStart)
+    from(UriBuilder.quartz(ROUTE_LABEL, cronExp()))
+      .autoStartup(schedulerAutoStart())
       .routeId(routeId)
         .bean(new InitMdcHandler(MDC_ROUTE_ID, ROUTE_LABEL))
-        .bean(new InitMdcHandler(MDC_UID, processId))
-        .log(LoggingLevel.DEBUG, ExportRouteBuilder.class.getCanonicalName(), "Exporting ...")
+        .bean(new InitMdcHandler(MDC_UID, processId()))
+        .log(LoggingLevel.DEBUG, routeLogger(), "Exporting ...")
         .bean(lookup(ExportHandler.class))
-        .log(LoggingLevel.DEBUG, ExportRouteBuilder.class.getCanonicalName(), "Export finished")
+        .log(LoggingLevel.DEBUG, routeLogger(), "Export finished")
         .bean(new ClearMdcHandler());
     //@formatter:on
   }

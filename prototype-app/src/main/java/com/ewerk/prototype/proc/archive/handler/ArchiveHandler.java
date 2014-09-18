@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
- * TODO h.stolzenberg: Document
+ * Camel handler implementation that is the actual workhorse for doing the archiving task.
  *
  * @author h.stolzenberg
  * @since 0.0.4

@@ -2,6 +2,8 @@ package com.ewerk.prototype.proc.util;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
+import java.util.UUID;
+
 /**
  * Utility class with helper functions for Camel routes.
  *
@@ -25,5 +27,9 @@ public final class Routes {
 
     //noinspection ConstantConditions
     return String.format("[%s/%s/%s]", PREFIX, routeBuilderClass.getCanonicalName(), label);
+  }
+
+  public static String processId() {
+    return UUID.randomUUID().toString();
   }
 }
