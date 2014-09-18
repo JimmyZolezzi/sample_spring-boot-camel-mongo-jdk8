@@ -27,10 +27,9 @@ dependencies {
   compile "org.eclipse.jetty:jetty-jsp:$jettyVersion"
 
   // Camel
-  compile("org.apache.camel:camel-spring-javaconfig:$camelVersion")
-  //    {
-  //  exclude group: "org.springframework", module: "spring-test"
-  //}
+  compile("org.apache.camel:camel-spring-javaconfig:$camelVersion") {
+    exclude group: "org.springframework", module: "spring-test"
+  }
   compile "org.apache.camel:camel-quartz2:$camelVersion"
 
   // Utils
@@ -40,6 +39,8 @@ dependencies {
   testCompile "org.testng:testng:$testngVersion"
   testCompile "org.assertj:assertj-core:$assertjVersion"
   testCompile "org.mockito:mockito-core:$mockitoVersion"
+  testCompile "org.hamcrest:hamcrest-core:$hamcrestVersion"
+  testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
 }
 
 test {
