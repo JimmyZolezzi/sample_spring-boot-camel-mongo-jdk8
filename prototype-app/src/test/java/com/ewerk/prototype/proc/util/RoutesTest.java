@@ -1,4 +1,4 @@
-package com.ewerk.prototype.export.util;
+package com.ewerk.prototype.proc.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,6 +25,6 @@ public class RoutesTest extends AbstractUnitTest {
   @Test
   public void testId() {
     final String id = Routes.id(RoutesTest.class, "unit-test");
-    assertThat(id).isEqualTo("[prototype/com.ewerk.prototype.export.util.RoutesTest/unit-test]");
+    assertThat(id).isEqualTo("[prototype/com.ewerk.prototype.proc.util.RoutesTest/unit-test]");
   }
 }

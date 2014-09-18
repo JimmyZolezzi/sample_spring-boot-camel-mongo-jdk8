@@ -51,6 +51,7 @@ endpoints:
 scheduler:
   auto-start: true
   startup-delay-seconds: 5
-  export-cron-exp: "0/15 * * * * ?"
+  cron-exp-export: "0/15 * * * * ?"
+  cron-exp-archive: "0/30 * * * * ?"
 
 # --------------------------------------------------------------------------------------------------

@@ -1,8 +1,8 @@
-package com.ewerk.prototype.export.handler;
+package com.ewerk.prototype.proc.export.handler;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
-import com.ewerk.prototype.export.util.UsedByCamel;
+import com.ewerk.prototype.proc.util.UsedByCamel;
 import org.apache.camel.Handler;
 import org.jboss.logging.MDC;
 

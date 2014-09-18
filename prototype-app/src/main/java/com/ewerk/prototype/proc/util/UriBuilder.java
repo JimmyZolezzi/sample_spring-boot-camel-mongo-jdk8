@@ -1,4 +1,4 @@
-package com.ewerk.prototype.export.util;
+package com.ewerk.prototype.proc.util;
 
 import static com.google.common.base.Preconditions.checkArgument;
 

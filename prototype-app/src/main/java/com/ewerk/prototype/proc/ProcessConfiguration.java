@@ -1,4 +1,4 @@
-package com.ewerk.prototype.export;
+package com.ewerk.prototype.proc;
 
 import org.apache.camel.RoutesBuilder;
 import org.apache.camel.component.quartz2.QuartzComponent;
@@ -19,14 +19,18 @@ import java.util.Properties;
  * @since 0.0.4
  */
 @Configuration
-public class ExportConfiguration {
+public class ProcessConfiguration {
   @Autowired
-  private RoutesBuilder transferRouteBuilder;
+  private RoutesBuilder exportRouteBuilder;
+
+  @Autowired
+  private RoutesBuilder archiveRouteBuilder;
 
   @Bean
   public SpringCamelContext camelContext(ApplicationContext applicationContext) throws Exception {
     SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
-    camelContext.addRoutes(transferRouteBuilder);
+    camelContext.addRoutes(exportRouteBuilder);
+    camelContext.addRoutes(archiveRouteBuilder);
     return camelContext;
   }
 

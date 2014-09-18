@@ -1,4 +1,4 @@
-package com.ewerk.prototype.export.util;
+package com.ewerk.prototype.proc.util;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
@@ -9,7 +9,11 @@ import static com.google.common.base.Preconditions.checkArgument;
  * @since 0.0.4
  */
 public final class Routes {
-  private static final String PREFIX = "prototype";
+
+  public static final String MDC_ROUTE_ID = "routeId";
+  public static final String MDC_UID = "uid";
+
+  public static final String PREFIX = "prototype";
 
   private Routes() {
   }

@@ -1,10 +1,10 @@
-package com.ewerk.prototype.export;
+package com.ewerk.prototype.proc.export;
 
-import com.ewerk.prototype.export.handler.ClearMdcHandler;
-import com.ewerk.prototype.export.handler.ExportHandler;
-import com.ewerk.prototype.export.handler.InitMdcHandler;
-import com.ewerk.prototype.export.util.Routes;
-import com.ewerk.prototype.export.util.UriBuilder;
+import com.ewerk.prototype.proc.export.handler.ClearMdcHandler;
+import com.ewerk.prototype.proc.export.handler.ExportHandler;
+import com.ewerk.prototype.proc.export.handler.InitMdcHandler;
+import com.ewerk.prototype.proc.util.Routes;
+import com.ewerk.prototype.proc.util.UriBuilder;
 import org.apache.camel.LoggingLevel;
 import org.apache.camel.spring.SpringRouteBuilder;
 import org.slf4j.Logger;
@@ -37,7 +37,7 @@ public class ExportRouteBuilder extends SpringRouteBuilder {
   private final boolean schedulerAutoStart;
 
   @Autowired
-  public ExportRouteBuilder(@Value("${scheduler.export-cron-exp}") final String exportCronExp,
+  public ExportRouteBuilder(@Value("${scheduler.cron-exp-export}") final String exportCronExp,
     @Value("${scheduler.auto-start}") final boolean schedulerAutoStart) {
     this.exportCronExp = exportCronExp;
     this.schedulerAutoStart = schedulerAutoStart;
@@ -47,18 +47,19 @@ public class ExportRouteBuilder extends SpringRouteBuilder {
   public void configure() throws Exception {
     LOG.info("Configure {} route", ROUTE_LABEL);
 
-    final String uid = UUID.randomUUID().toString();
+    final String routeId = Routes.id(ExportRouteBuilder.class, ROUTE_LABEL);
+    final String processId = UUID.randomUUID().toString();
 
     //@formatter:off
     from(UriBuilder.quartz(ROUTE_LABEL, exportCronExp))
       .autoStartup(schedulerAutoStart)
-      .routeId(Routes.id(ExportRouteBuilder.class,ROUTE_LABEL))
+      .routeId(routeId)
         .bean(new InitMdcHandler(MDC_ROUTE_ID, ROUTE_LABEL))
-        .bean(new InitMdcHandler(MDC_UID, uid))
-        .log(LoggingLevel.DEBUG, getClass().getCanonicalName(), String.format("Triggered: %s", uid))
+        .bean(new InitMdcHandler(MDC_UID, processId))
+        .log(LoggingLevel.DEBUG, ExportRouteBuilder.class.getCanonicalName(), "Exporting ...")
         .bean(lookup(ExportHandler.class))
-        .log(LoggingLevel.DEBUG, getClass().getCanonicalName(), String.format("Finished: %s", uid))
+        .log(LoggingLevel.DEBUG, ExportRouteBuilder.class.getCanonicalName(), "Export finished")
         .bean(new ClearMdcHandler());
-      //@formatter:on
+    //@formatter:on
   }
 }

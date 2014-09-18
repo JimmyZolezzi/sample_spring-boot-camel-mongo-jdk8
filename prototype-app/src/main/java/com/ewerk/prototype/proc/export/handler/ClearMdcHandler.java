@@ -1,6 +1,6 @@
-package com.ewerk.prototype.export.handler;
+package com.ewerk.prototype.proc.export.handler;
 
-import com.ewerk.prototype.export.util.UsedByCamel;
+import com.ewerk.prototype.proc.util.UsedByCamel;
 import org.apache.camel.Handler;
 import org.slf4j.MDC;
 
