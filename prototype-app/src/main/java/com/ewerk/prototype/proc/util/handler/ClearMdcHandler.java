@@ -1,4 +1,4 @@
-package com.ewerk.prototype.proc.export.handler;
+package com.ewerk.prototype.proc.util.handler;
 
 import com.ewerk.prototype.proc.util.UsedByCamel;
 import org.apache.camel.Handler;

@@ -2,6 +2,7 @@ package com.ewerk.prototype.proc.export.handler;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.ewerk.prototype.proc.util.handler.InitMdcHandler;
 import org.apache.log4j.MDC;
 import org.testng.annotations.Test;
 
