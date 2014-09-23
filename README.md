@@ -1,4 +1,6 @@
-# SPRING-BOOT-CAMEL-MONGO-JDK8
+![Build status](https://travis-ci.org/ewerk/sample_spring-boot-camel-mongo-jdk8.svg)
+
+# SPRING-BOOT-CAMEL-MONGO-JDK8 
 
 ## Introduction
 Sample Spring Boot application that integrates some of the most commonly used top-notch frameworks 
