@@ -6,10 +6,10 @@ import static com.ewerk.prototype.proc.util.Routes.id;
 import static com.ewerk.prototype.proc.util.Routes.processId;
 
 import com.ewerk.prototype.proc.archive.handler.ArchiveHandler;
-import com.ewerk.prototype.proc.util.handler.ClearMdcHandler;
-import com.ewerk.prototype.proc.util.handler.InitMdcHandler;
 import com.ewerk.prototype.proc.util.AbstractQuartzRouteBuilder;
 import com.ewerk.prototype.proc.util.UriBuilder;
+import com.ewerk.prototype.proc.util.handler.ClearMdcHandler;
+import com.ewerk.prototype.proc.util.handler.InitMdcHandler;
 import org.apache.camel.LoggingLevel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

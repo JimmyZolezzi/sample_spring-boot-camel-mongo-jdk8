@@ -10,8 +10,8 @@ import org.slf4j.MDC;
  * @since 0.0.4
  */
 public class ClearMdcHandler {
-	@Handler
-	public void handle() {
-		MDC.clear();
-	}
+  @Handler
+  public void handle() {
+    MDC.clear();
+  }
 }

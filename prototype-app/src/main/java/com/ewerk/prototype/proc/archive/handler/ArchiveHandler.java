@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ArchiveHandler {
-	private static final Logger LOG = LoggerFactory.getLogger(ArchiveHandler.class);
+  private static final Logger LOG = LoggerFactory.getLogger(ArchiveHandler.class);
 
-	@Handler
-	public void archive() {
-		LOG.info("Archiving ...");
-	}
+  @Handler
+  public void archive() {
+    LOG.info("Archiving ...");
+  }
 }

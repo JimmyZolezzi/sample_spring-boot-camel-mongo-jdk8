@@ -12,18 +12,17 @@ import org.jboss.logging.MDC;
  * @since 0.0.4
  */
 public class InitMdcHandler {
-	private final String label;
-	private final String value;
+  private final String label;
+  private final String value;
 
-	public InitMdcHandler(final String label, final String value) {
-		checkArgument(label != null && !label.isEmpty(),
-				"Argument 'label' must not be null or empty.");
-		this.label = label;
-		this.value = value;
-	}
+  public InitMdcHandler(final String label, final String value) {
+    checkArgument(label != null && !label.isEmpty(), "Argument 'label' must not be null or empty.");
+    this.label = label;
+    this.value = value;
+  }
 
-	@Handler
-	public void handle() {
-		MDC.put(label, value);
-	}
+  @Handler
+  public void handle() {
+    MDC.put(label, value);
+  }
 }
