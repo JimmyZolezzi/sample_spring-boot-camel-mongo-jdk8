@@ -3,3 +3,7 @@ jdk:
   - oraclejdk8
 
 script: ./gradlew clean install
+
+branches:
+  only:
+    - master
