@@ -1,7 +1,6 @@
 package com.ewerk.prototype.proc.export.handler;
 
 import com.ewerk.prototype.persistence.repositories.PersonRepository;
-import com.ewerk.prototype.proc.util.UsedByCamel;
 import org.apache.camel.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +21,6 @@ public class ExportHandler {
   @Autowired
   private PersonRepository personRepository;
 
-  @UsedByCamel
   @Handler
   public void export() {
     // TODO h.stolzenberg: do the real export stuff
