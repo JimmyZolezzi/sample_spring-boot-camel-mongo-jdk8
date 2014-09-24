@@ -35,6 +35,9 @@ Please see the issues section for upcoming features and bugs.
 * [MongoDB](http://www.mongodb.org) for data persistence
 * [spring-data-mongodb](http://projects.spring.io/spring-data-mongodb)
 
+### Business processes
+* [Apache Camel](http://camel.apache.org/) 
+
 ### Utilities
 * [Guava](https://code.google.com/p/guava-libraries)
 
@@ -118,3 +121,7 @@ Also you should have a look at AbstractIntegTest class, which is the fundamental
 integration test suite. It took some time figuring out getting all set up using the TestNG runner.
 
 REST-assured framework provides a fluent DSL for easily testing REST endpoints.
+
+## Camel integration
+The Camel integration is presented in the `com.ewerk.prototype.proc` package. There are currently
+two main routes configured that represented the stubbed business logic of the prototype.
