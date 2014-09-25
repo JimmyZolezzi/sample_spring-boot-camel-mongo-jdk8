@@ -33,6 +33,9 @@ dependencies {
   compile "org.apache.camel:camel-quartz2:$camelVersion"
 
   // Utils
+  compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
+  compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
+  compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
   compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
   compile "com.google.guava:guava:$guavaVersion"
 
