@@ -33,6 +33,7 @@ dependencies {
   compile "org.apache.camel:camel-quartz2:$camelVersion"
 
   // Utils
+  compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
   compile "com.google.guava:guava:$guavaVersion"
 
   // Testing

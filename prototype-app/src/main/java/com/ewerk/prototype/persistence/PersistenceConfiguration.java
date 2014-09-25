@@ -1,10 +1,26 @@
 package com.ewerk.prototype.persistence;
 
+import com.ewerk.prototype.persistence.converters.DateToLocalDateConverter;
+import com.ewerk.prototype.persistence.converters.LocalDateToDateConverter;
+import com.google.common.collect.Lists;
 import com.mongodb.MongoClientOptions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.data.mongodb.MongoDbFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.convert.CustomConversions;
+import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
+import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
+import java.io.Serializable;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 /**
  * This configuration class is used to setup the connection to the MongoDB instance. Here we should
@@ -19,6 +35,34 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 @EnableMongoRepositories
 public class PersistenceConfiguration {
+
+  private static final Logger LOG = LoggerFactory.getLogger(LoggerFactory.class);
+
+  @Bean
+  public CustomConversions customConversions() {
+    final ArrayList<? extends Converter<? extends Serializable, ? extends Serializable>>
+      converters =
+      Lists.newArrayList(new DateToLocalDateConverter(), new LocalDateToDateConverter());
+    LOG.info("Register converters: " + converters);
+    return new CustomConversions(converters);
+  }
+
+  @Bean
+  public MappingMongoConverter mappingMongoConverter(MongoDbFactory mongoDbFactory,
+    MongoMappingContext mongoMappingContext, CustomConversions customConversions) throws Exception {
+
+    MappingMongoConverter converter =
+      new MappingMongoConverter(new DefaultDbRefResolver(mongoDbFactory), mongoMappingContext);
+    converter.setCustomConversions(customConversions);
+
+    return converter;
+  }
+
+  @Bean
+  public MongoTemplate mongoTemplate(MongoDbFactory mongoDbFactory,
+    MappingMongoConverter mappingMongoConverter) throws UnknownHostException {
+    return new MongoTemplate(mongoDbFactory, mappingMongoConverter);
+  }
 
   /**
    * Customize the MongoDB client connection properties.

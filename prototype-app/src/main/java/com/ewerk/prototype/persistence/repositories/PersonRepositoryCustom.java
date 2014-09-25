@@ -9,5 +9,5 @@ import com.ewerk.prototype.model.Person;
  * @since 0.0.3
  */
 public interface PersonRepositoryCustom {
-  public Person create(String lastName, String firstName);
+  Person create(Person person);
 }

@@ -4,6 +4,9 @@ import com.google.common.base.MoreObjects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDate;
 
 /**
  * Simple entity bean representing a person.
@@ -21,6 +24,10 @@ public final class Person {
 
   @Indexed
   private String lastName;
+
+  @Indexed
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  private LocalDate birthday;
 
   public Person() {
   }
@@ -49,6 +56,14 @@ public final class Person {
     this.lastName = lastName;
   }
 
+  public LocalDate getBirthday() {
+    return birthday;
+  }
+
+  public void setBirthday(final LocalDate birthday) {
+    this.birthday = birthday;
+  }
+
   @Override
   public boolean equals(final Object o) {
     if (this == o) {
@@ -60,15 +75,15 @@ public final class Person {
 
     final Person person = (Person) o;
 
-    return firstName.equals(person.firstName) && id.equals(person.id) && lastName.equals(
-      person.lastName);
+    return birthday.equals(person.birthday) && firstName.equals(person.firstName)
+      && lastName.equals(person.lastName);
   }
 
   @Override
   public int hashCode() {
-    int result = id.hashCode();
-    result = 31 * result + firstName.hashCode();
+    int result = firstName.hashCode();
     result = 31 * result + lastName.hashCode();
+    result = 31 * result + birthday.hashCode();
     return result;
   }
 
@@ -78,6 +93,7 @@ public final class Person {
       .add("id", id)
       .add("lastName", lastName)
       .add("firstName", firstName)
+      .add("birthday", birthday)
       .toString();
   }
 }

@@ -39,6 +39,7 @@ Please see the issues section for upcoming features and bugs.
 * [Apache Camel](http://camel.apache.org/) 
 
 ### Utilities
+* [JSR310](http://docs.oracle.com/javase/tutorial/datetime) Date/Time API
 * [Guava](https://code.google.com/p/guava-libraries)
 
 ### Testing

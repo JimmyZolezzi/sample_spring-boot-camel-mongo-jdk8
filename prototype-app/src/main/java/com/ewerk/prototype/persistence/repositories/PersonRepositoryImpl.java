@@ -23,20 +23,17 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
   @Autowired
   private PersonRepository personRepository;
 
+  @SuppressWarnings("ConstantConditions")
   @Override
-  public Person create(final String lastName, final String firstName) {
-    checkArgument(lastName != null && !lastName.isEmpty(),
-      "The argument 'lastName' must not be null or empty.");
-    checkArgument(firstName != null && !firstName.isEmpty(),
-      "The argument 'firstName' must not be null or empty.");
+  public Person create(Person person) {
+    checkArgument(person != null, "The argument 'person' must not be null.");
+
+    String lastName = person.getLastName();
+    String firstName = person.getFirstName();
 
     if (personRepository.findByLastNameAndFirstName(lastName, firstName) != null) {
       throw new UniqueViolationException("Person '%s, %s' already exists.", lastName, firstName);
     }
-
-    final Person person = new Person();
-    person.setLastName(lastName);
-    person.setFirstName(firstName);
 
     LOG.debug("Created: {}", person);
     return personRepository.save(person);

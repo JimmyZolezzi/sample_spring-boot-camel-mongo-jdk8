@@ -5,12 +5,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import com.ewerk.prototype.model.Person;
 import com.ewerk.prototype.persistence.repositories.PersonRepository;
-import com.ewerk.prototype.persistence.repositories.PersonRepositoryCustom;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.List;
 
 /**
@@ -21,17 +22,25 @@ import java.util.List;
  */
 public class PersonControllerIntegTest extends AbstractApiIntegTest {
 
+  @SuppressWarnings("SpringJavaAutowiredMembersInspection")
   @Autowired
   private PersonRepository personRepository;
-
-  @Autowired
-  private PersonRepositoryCustom personRepositoryCustom;
 
   @BeforeMethod
   public void setup() {
     personRepository.deleteAll();
-    personRepositoryCustom.create("Smith", "John");
-    personRepositoryCustom.create("Mullen", "Peggy");
+
+    Person john = new Person();
+    john.setLastName("Smith");
+    john.setFirstName("John");
+    john.setBirthday(LocalDate.of(2000, Month.DECEMBER, 10));
+    personRepository.save(john);
+
+    Person peggy = new Person();
+    peggy.setLastName("Mullen");
+    peggy.setFirstName("Peggy");
+    peggy.setBirthday(LocalDate.of(1957, Month.APRIL, 16));
+    personRepository.save(peggy);
   }
 
   @AfterMethod

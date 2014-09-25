@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -41,10 +41,9 @@ public class PersonController {
     return personRepository.findAll();
   }
 
-  @RequestMapping(value = "/create/{lastName}/{firstName}", method = RequestMethod.GET)
-  public ResponseEntity<Person> create(@PathVariable final String lastName,
-    @PathVariable final String firstName) {
-    return new ResponseEntity<>(personRepositoryCustom.create(lastName, firstName), HttpStatus.OK);
+  @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = "application/json")
+  public ResponseEntity<Person> create(@RequestBody final Person person) {
+    return new ResponseEntity<>(personRepositoryCustom.create(person), HttpStatus.OK);
   }
 
   @RequestMapping(value = "/truncate", method = RequestMethod.GET)
