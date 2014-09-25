@@ -10,8 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import java.util.List;
 
 /**
- * This bean factory enables the Spring WebMVC features of spring-boot. Currently no customizations
- * are made.
+ * This bean factory enables the Spring WebMVC features of spring-boot.
  *
  * @author h.stolzenberg
  * @since 0.0.4
