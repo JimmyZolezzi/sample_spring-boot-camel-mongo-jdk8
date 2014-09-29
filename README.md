@@ -126,3 +126,14 @@ REST-assured framework provides a fluent DSL for easily testing REST endpoints.
 ## Camel integration
 The Camel integration is presented in the `com.ewerk.prototype.proc` package. There are currently
 two main routes configured that represented the stubbed business logic of the prototype.
+
+## JSR-310
+In order to make the JSR-310 date/time API working for our model beans, the following steps had to
+be done:
+
+* add Jackson JSR-310 module to classpath
+* register `CustomConversions` bean (see `PersistenceConfiguration`) to enable persistence of `LocalDate` class
+
+__Hint__: Spring Boot has an issue registering the Jackson JSR-310 moduel from classpath when 
+using `@EnableWebMvc`. See [GH-1620](https://github.com/spring-projects/spring-boot/issues/1620) 
+for details.   
