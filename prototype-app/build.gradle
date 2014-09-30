@@ -38,6 +38,7 @@ dependencies {
   compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
   compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
   compile "com.google.guava:guava:$guavaVersion"
+  compile "com.google.auto.value:auto-value:$autoValueVersion"
 
   // Testing
   testCompile "org.testng:testng:$testngVersion"
@@ -45,6 +46,33 @@ dependencies {
   testCompile "org.mockito:mockito-core:$mockitoVersion"
   testCompile "org.hamcrest:hamcrest-core:$hamcrestVersion"
   testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
+}
+
+sourceSets {
+  generated {
+    java {
+      srcDirs = [generatedSourcesDir]
+    }
+  }
+}
+
+task init {
+  sourceSets.generated.java.srcDirs.each { dir ->
+    println(dir)
+    if (dir.exists()) {
+      dir.delete()
+    }
+
+    dir.mkdirs();
+  }
+}
+
+compileJava.dependsOn init
+
+compileJava {
+  options.compilerArgs = [
+      "-s", generatedSourcesDir
+  ]
 }
 
 test {
