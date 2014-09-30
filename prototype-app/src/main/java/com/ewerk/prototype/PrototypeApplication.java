@@ -26,7 +26,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * This is the application entry point. Utilizing the main method makes it easy to run/debug the
- * application form CLI oder IDE. In the Spring samples this class is often annotated with {@link
+ * application from CLI oder IDE. In the Spring samples this class is often annotated with {@link
  * org.springframework.context.annotation.Configuration} and is therefore used as bean factory. We
  * do not go this way in this example, as we want to use more purpose specific configuration
  * classes.<br/><br/>
