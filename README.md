@@ -134,6 +134,6 @@ be done:
 * add Jackson JSR-310 module to classpath
 * register `CustomConversions` bean (see `PersistenceConfiguration`) to enable persistence of `LocalDate` class
 
-__Hint__: Spring Boot has an issue registering the Jackson JSR-310 moduel from classpath when 
+__Hint__: Spring Boot has an issue registering the Jackson JSR-310 module from classpath when 
 using `@EnableWebMvc`. See [GH-1620](https://github.com/spring-projects/spring-boot/issues/1620) 
 for details.   
