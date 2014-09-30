@@ -14,12 +14,18 @@
  * limitations under the License.
  */
 
-package com.ewerk.prototype.proc.archive.handler;
+package com.ewerk.prototype.proc.archiving.handler;
 
+import com.ewerk.prototype.model.Person;
+import com.ewerk.prototype.persistence.repositories.PersonRepository;
+import com.ewerk.prototype.proc.archiving.model.Archive;
 import org.apache.camel.Handler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * Camel handler implementation that is the actual workhorse for doing the archiving task.
@@ -31,8 +37,17 @@ import org.springframework.stereotype.Component;
 public class ArchiveHandler {
   private static final Logger LOG = LoggerFactory.getLogger(ArchiveHandler.class);
 
+  @Autowired
+  private PersonRepository personRepository;
+
   @Handler
   public void archive() {
-    LOG.info("Archiving ...");
+    final List<Person> persons = personRepository.findAll();
+    if (persons == null || persons.isEmpty()) {
+      LOG.info("Nothing to backup");
+      return;
+    }
+
+    LOG.info("Backup: {}", Archive.with(persons));
   }
 }

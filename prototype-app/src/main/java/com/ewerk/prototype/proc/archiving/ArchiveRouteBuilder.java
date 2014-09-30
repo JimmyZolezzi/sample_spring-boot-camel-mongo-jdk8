@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.ewerk.prototype.proc.archive;
+package com.ewerk.prototype.proc.archiving;
 
 import static com.ewerk.prototype.proc.util.Routes.MDC_ROUTE_ID;
 import static com.ewerk.prototype.proc.util.Routes.MDC_UID;
 import static com.ewerk.prototype.proc.util.Routes.id;
 import static com.ewerk.prototype.proc.util.Routes.processId;
 
-import com.ewerk.prototype.proc.archive.handler.ArchiveHandler;
+import com.ewerk.prototype.proc.archiving.handler.ArchiveHandler;
 import com.ewerk.prototype.proc.util.AbstractQuartzRouteBuilder;
 import com.ewerk.prototype.proc.util.UriBuilder;
 import com.ewerk.prototype.proc.util.handler.ClearMdcHandler;
@@ -34,8 +34,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * Camel route builder the creates the main archive route. Currently it just sets up quartz, the
- * route ID and some properties and then calls the main archive handler.
+ * Camel route builder the creates the main archiving route. Currently it just sets up quartz, the
+ * route ID and some properties and then calls the main archiving handler.
  *
  * @author h.stolzenberg
  * @see org.apache.camel.builder.RouteBuilder
@@ -46,10 +46,10 @@ import org.springframework.stereotype.Component;
 public class ArchiveRouteBuilder extends AbstractQuartzRouteBuilder {
   private static final Logger LOG = LoggerFactory.getLogger(ArchiveRouteBuilder.class);
 
-  private static final String ROUTE_LABEL = "archive";
+  private static final String ROUTE_LABEL = "archiving";
 
   @Autowired
-  public ArchiveRouteBuilder(@Value("${scheduler.cron-exp-archive}") final String cronExpArchive,
+  public ArchiveRouteBuilder(@Value("${scheduler.cron-exp-archiving}") final String cronExpArchive,
     @Value("${scheduler.auto-start}") final boolean schedulerAutoStart) {
     super(cronExpArchive, schedulerAutoStart);
   }

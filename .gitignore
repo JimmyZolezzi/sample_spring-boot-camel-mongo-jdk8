@@ -1,8 +1,9 @@
 build/
 .gradle/
 .vagrant/
-.tmp/
 .idea/
+.tmp/
+prototype-app/src/main/generated/
 *.iml
 atlassian-ide-plugin.xml
 *.pid

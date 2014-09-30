@@ -10,7 +10,10 @@ buildscript {
 }
 
 ext {
+  generatedSourcesDir = "src/main/generated"
+
   assertjVersion = "1.6.1"
+  autoValueVersion = "1.0-rc1"
   camelVersion = "2.13.2"
   guavaVersion = "18.0"
   hamcrestVersion = "1.3"
