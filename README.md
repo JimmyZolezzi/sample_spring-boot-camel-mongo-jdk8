@@ -152,7 +152,7 @@ To integrate `AutoValue` to the sample prototype, the following things where nec
 Using `AutoValue` for immutable bean types really fastens up coding and also prevents you from doing 
 all the mistakes that are associated with mutable types. See the fantastic book 
 [Effective Java](http://uet.vnu.edu.vn/~chauttm/e-books/java/Effective.Java.2nd.Edition.May.2008.3000th.Release.pdf)
-for details on that.
+ (Item 15) for details on that.
 
 Still, there are some limitations. We have made the experience that `AutoValue` simply cannot be used
 for annotated domain model beans (e.g. JPA entities, `@Document` classes, classes with XML or JSON
