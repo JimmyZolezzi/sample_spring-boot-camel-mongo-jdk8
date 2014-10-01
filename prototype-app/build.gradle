@@ -48,6 +48,8 @@ dependencies {
   testCompile "org.hamcrest:hamcrest-library:$hamcrestVersion"
 }
 
+def generatedSourcesDir = file("src/main/generated")
+
 sourceSets {
   generated {
     java {
@@ -58,11 +60,9 @@ sourceSets {
 
 task init {
   sourceSets.generated.java.srcDirs.each { dir ->
-    println(dir)
     if (dir.exists()) {
       dir.delete()
     }
-
     dir.mkdirs();
   }
 }
@@ -71,7 +71,7 @@ compileJava.dependsOn init
 
 compileJava {
   options.compilerArgs = [
-      "-s", generatedSourcesDir
+      "-s", generatedSourcesDir.absolutePath
   ]
 }
 
