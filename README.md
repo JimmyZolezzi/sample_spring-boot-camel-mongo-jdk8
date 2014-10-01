@@ -41,6 +41,7 @@ Please see the issues section for upcoming features and bugs.
 ### Utilities
 * [JSR310](http://docs.oracle.com/javase/tutorial/datetime) Date/Time API
 * [Guava](https://code.google.com/p/guava-libraries)
+* [AutoValue](https://github.com/google/auto/tree/master/value)
 
 ### Testing
 * [TestNG](http://testng.org) - Testing framework/Test runner
@@ -136,4 +137,25 @@ be done:
 
 __Hint__: Spring Boot has an issue registering the Jackson JSR-310 module from classpath when 
 using `@EnableWebMvc`. See [GH-1620](https://github.com/spring-projects/spring-boot/issues/1620) 
-for details.   
+for details.
+   
+## Google AutoValue
+Google `AutoValue` provides a convenient way to write __immutable__ Java beans without having to write
+all the boilerplate code again and again (`toString`, `equals`, `hashCode`, private constructors, ...).
+
+To integrate `AutoValue` to the sample prototype, the following things where necessary:
+* add AutoValue to the `prototype-apps` classpath
+* modify the build script to include a generated source dir
+* let compile task depend on that
+* configure `compileJava` task to compile the auto value classes (see `@AutoValue`)
+
+Using `AutoValue` for immutable bean types really fastens up coding and also prevents you from doing 
+all the mistakes that are associated with mutable types. See the fantastic book 
+[Effective Java](http://uet.vnu.edu.vn/~chauttm/e-books/java/Effective.Java.2nd.Edition.May.2008.3000th.Release.pdf)
+for details on that.
+
+Still, there are some limitations. We have made the experience that `AutoValue` simply cannot be used
+for annotated domain model beans (e.g. JPA entities, `@Document` classes, classes with XML or JSON
+mapping annotations, ...). This is because most of the frameworks used for these domain objects, like 
+`Hibernate`, `Jackson` or `spring-data-*`, imply some restrictions on the model classes. But this
+may change in future.
