@@ -21,6 +21,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * Simple spring-data CRUD repository for interacting with the MongoDB {@link Person} document
  * store.
@@ -31,7 +33,7 @@ import java.util.List;
  */
 public interface PersonRepository extends MongoRepository<Person, String> {
 
-  public List<Person> findByLastName(String lastName);
+  public List<Person> findByLastName(@Nonnull String lastName);
 
-  public Person findByLastNameAndFirstName(String lastName, String firstName);
+  public Person findByLastNameAndFirstName(@Nonnull String lastName, @Nonnull String firstName);
 }

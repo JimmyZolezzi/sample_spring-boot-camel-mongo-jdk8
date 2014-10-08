@@ -28,6 +28,9 @@ public class LocalDateToDateConverter implements Converter<LocalDate, Date> {
 
   @Override
   public Date convert(LocalDate localDate) {
+    if (localDate == null) {
+      return null;
+    }
     return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
   }
 

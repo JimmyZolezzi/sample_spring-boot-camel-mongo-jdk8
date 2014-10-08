@@ -23,6 +23,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import javax.annotation.Nonnull;
+
 /**
  * Global error handler for all WebMVC controllers. It is important that this class is public,
  * otherwise Spring won´t find the {@link ExceptionHandler} method.
@@ -42,7 +44,7 @@ public class GlobalErrorHandler {
    * (INTERNAL_SERVER_ERROR) and the exception message
    */
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleException(Exception exception) {
+  public ResponseEntity<String> handleException(@Nonnull Exception exception) {
     LOG.error("Internal server error", exception);
     return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
   }

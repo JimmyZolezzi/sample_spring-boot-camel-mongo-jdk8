@@ -31,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * Creates a REST endpoint at the following URI:<br/><br/>
  *
@@ -58,7 +60,7 @@ public class PersonController {
   }
 
   @RequestMapping(value = "/create", method = RequestMethod.POST, consumes = "application/json")
-  public ResponseEntity<Person> create(@RequestBody final Person person) {
+  public ResponseEntity<Person> create(@Nonnull @RequestBody final Person person) {
     return new ResponseEntity<>(personRepositoryCustom.create(person), HttpStatus.OK);
   }
 

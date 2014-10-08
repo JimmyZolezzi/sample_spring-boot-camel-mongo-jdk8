@@ -25,6 +25,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Nonnull;
+
 /**
  * Default implementation of the custom spring-data repository of the {@link Person} entity.
  *
