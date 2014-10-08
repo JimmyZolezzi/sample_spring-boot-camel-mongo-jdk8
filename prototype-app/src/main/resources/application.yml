@@ -52,6 +52,6 @@ scheduler:
   auto-start: true
   startup-delay-seconds: 5
   cron-exp-export: "0/15 * * * * ?"
-  cron-exp-archive: "0/30 * * * * ?"
+  cron-exp-archiving: "0/30 * * * * ?"
 
 # --------------------------------------------------------------------------------------------------
