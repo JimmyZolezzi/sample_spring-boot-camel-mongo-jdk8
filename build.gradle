@@ -21,7 +21,7 @@ ext {
   mockitoVersion = "1.9.5"
   restAssuredVersion = "2.3.3"
   slf4jVersion = "1.7.7"
-  springBootVersion = "1.1.7.RELEASE"
+  springBootVersion = "1.1.8.RELEASE"
   testngVersion = "6.8.8"
 }
 
