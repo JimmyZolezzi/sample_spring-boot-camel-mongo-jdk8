@@ -1,4 +1,4 @@
-![Build status](https://travis-ci.org/ewerk/sample_spring-boot-camel-mongo-jdk8.svg)
+![Build status](https://travis-ci.org/ewerk/sample_spring-boot-camel-mongo-jdk8.svg) [![License](http://img.shields.io/badge/license-Apache-brightgreen.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
 
 # SPRING-BOOT-CAMEL-MONGO-JDK8 
 
