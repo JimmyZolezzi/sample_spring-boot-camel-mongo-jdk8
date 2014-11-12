@@ -40,7 +40,7 @@ allprojects {
 }
 
 wrapper {
-  gradleVersion = "2.2-rc-1"
+  gradleVersion = "2.2"
 }
 
 release {
