@@ -28,7 +28,7 @@ Please see the issues section for upcoming features and bugs.
 ## Used libraries (so far)
 ### General
 * [JDK-8](http://www.oracle.com/technetwork/java/javase/downloads)
-* [Gradle-2.1](http://www.gradle.org) multi module project
+* [Gradle-2.2](http://www.gradle.org) multi module project
 * [Spring Boot](http://projects.spring.io/spring-boot)
 
 ### Persistence
