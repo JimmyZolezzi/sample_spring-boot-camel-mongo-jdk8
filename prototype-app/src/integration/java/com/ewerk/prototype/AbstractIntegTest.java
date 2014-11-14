@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 the original author or authors.
+ * Copyright 2012-2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -38,7 +38,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * TestNG.<br/><br/>
  *
  * TestNG requires us to extend from {@link AbstractTestNGSpringContextTests} which also tries to
- * provide a mock servlet context, but that conflicts with {@link SpringApplicationConfiguration}
+ * provide a mock servlet context, but that conflicts with {@link org.springframework.boot.test.SpringApplicationConfiguration}
  * which is by default JUnit based.<br/><br/>
  *
  * See http://stackoverflow.com/questions/25537436/integration-testing-a-spring-boot-web-app-with-testng

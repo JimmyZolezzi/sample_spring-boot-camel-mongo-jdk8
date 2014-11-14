@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2013 the original author or authors.
+ * Copyright 2012-2014 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.ewerk.prototype.proc;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import com.ewerk.prototype.AbstractIntegTest;
 import org.apache.camel.builder.RouteBuilder;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author h.stolzenberg
  * @since 0.0.4
  */
-public class ProcessConfigurationIntegTest {
+public class ProcessConfigurationIntegTest extends AbstractIntegTest {
 
   @Autowired
   private RouteBuilder exportRouteBuilder;
