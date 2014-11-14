@@ -44,6 +44,7 @@ dependencies {
   compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
   compile "com.google.guava:guava:$guavaVersion"
   compile "com.google.auto.value:auto-value:$autoValueVersion"
+  compile "edu.washington.cs.types.checker:checker-framework:$checkerFrameworkVersion"
 
   // Testing
   testCompile "org.testng:testng:$testngVersion"
