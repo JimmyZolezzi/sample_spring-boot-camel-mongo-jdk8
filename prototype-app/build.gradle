@@ -98,8 +98,6 @@ integrationTest {
   maxHeapSize = "512m"
 }
 
-check.dependsOn integrationTest
-
 jar {
   manifest {
     attributes(
