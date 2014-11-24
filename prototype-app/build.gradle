@@ -1,7 +1,6 @@
 buildscript {
   repositories {
-    mavenLocal()
-    mavenCentral()
+    jcenter()
   }
 
   dependencies {
@@ -10,13 +9,13 @@ buildscript {
 }
 
 plugins {
+  id "java"
+  id "jacoco"
   id "info.solidsoft.pitest" version "1.1.1"
+  id "com.ewerk.gradle.plugins.integration-test" version "1.0.5"
 }
 
-apply plugin: "java"
 apply plugin: "spring-boot"
-apply plugin: 'integration-test'
-apply plugin: "jacoco"
 
 dependencies {
   // Spring boot
