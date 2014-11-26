@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.Test;
 
 /**
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 public class PersonRepositoryIntegTest extends AbstractIntegTest {

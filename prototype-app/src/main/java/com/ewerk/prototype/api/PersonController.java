@@ -40,7 +40,7 @@ import javax.annotation.Nonnull;
  *
  * The controller provides access to the data within the MongoDB.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 @RestController

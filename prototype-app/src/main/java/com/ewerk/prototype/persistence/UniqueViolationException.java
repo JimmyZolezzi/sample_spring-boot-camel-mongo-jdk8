@@ -20,7 +20,7 @@ package com.ewerk.prototype.persistence;
  * Exception class used for specific exception that may occur during runtime accessing the
  * persistence layer.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 public final class UniqueViolationException extends RuntimeException {

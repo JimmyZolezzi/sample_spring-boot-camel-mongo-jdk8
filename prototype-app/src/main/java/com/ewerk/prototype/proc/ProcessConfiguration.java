@@ -30,7 +30,7 @@ import java.util.Properties;
 /**
  * Spring configuration class. Creates all beans that are involved in the export process.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @see org.springframework.context.annotation.Configuration
  * @since 0.0.4
  */

@@ -23,7 +23,7 @@ import java.util.UUID;
 /**
  * Utility class with helper functions for Camel routes.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 public final class Routes {

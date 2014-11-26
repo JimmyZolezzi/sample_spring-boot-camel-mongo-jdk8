@@ -24,7 +24,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 public class ProcessConfigurationIntegTest extends AbstractIntegTest {

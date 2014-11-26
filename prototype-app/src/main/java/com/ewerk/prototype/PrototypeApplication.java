@@ -35,7 +35,7 @@ import org.springframework.context.annotation.Configuration;
  * writes a PID file {@link PrototypeApplication#PID_FILE} to the current directory. The path is
  * currently not configurable through spring-boot itself.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.1
  */
 @Configuration

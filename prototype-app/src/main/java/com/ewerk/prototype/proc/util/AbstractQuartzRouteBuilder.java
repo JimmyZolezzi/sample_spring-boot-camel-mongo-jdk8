@@ -23,7 +23,7 @@ import org.apache.camel.spring.SpringRouteBuilder;
  * classes used for the business processes. Provides some accessor methods that are useful to be
  * used within the routes.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 public abstract class AbstractQuartzRouteBuilder extends SpringRouteBuilder {

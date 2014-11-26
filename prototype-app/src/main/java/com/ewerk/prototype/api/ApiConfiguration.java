@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 /**
  * This bean factory enables the Spring WebMVC features of spring-boot.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 @Configuration

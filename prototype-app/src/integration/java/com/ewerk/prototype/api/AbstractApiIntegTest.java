@@ -27,7 +27,7 @@ import org.testng.annotations.BeforeClass;
  * the embedded container with a random port number, which then is retrieved from the spring
  * context.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 abstract class AbstractApiIntegTest extends AbstractIntegTest {

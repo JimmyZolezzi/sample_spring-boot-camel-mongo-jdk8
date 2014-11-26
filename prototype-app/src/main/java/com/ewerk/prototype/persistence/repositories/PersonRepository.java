@@ -27,7 +27,7 @@ import javax.annotation.Nonnull;
  * Simple spring-data CRUD repository for interacting with the MongoDB {@link Person} document
  * store.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @see org.springframework.data.mongodb.repository.MongoRepository
  * @since 0.0.1
  */

@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * Camel handler implementation that is the actual workhorse for doing the archiving task.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 @Component

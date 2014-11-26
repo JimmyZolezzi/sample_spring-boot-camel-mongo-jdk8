@@ -21,7 +21,7 @@ import static com.google.common.base.Preconditions.checkArgument;
 /**
  * Utility class for creating various types of URIs.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 public final class UriBuilder {

@@ -29,7 +29,7 @@ import javax.annotation.Nonnull;
  * Global error handler for all WebMVC controllers. It is important that this class is public,
  * otherwise Spring won´t find the {@link ExceptionHandler} method.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 @ControllerAdvice

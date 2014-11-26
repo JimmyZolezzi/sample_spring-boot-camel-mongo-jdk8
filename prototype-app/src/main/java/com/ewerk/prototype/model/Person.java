@@ -27,7 +27,7 @@ import java.time.LocalDate;
 /**
  * Simple entity bean representing a person.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.2
  */
 @Document

@@ -24,7 +24,7 @@ import org.jboss.logging.MDC;
 /**
  * Initializes the {@link org.slf4j.MDC} context and adds the given key value pair to it.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 public class InitMdcHandler {

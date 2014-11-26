@@ -30,7 +30,7 @@ import javax.annotation.Nonnull;
 /**
  * Default implementation of the custom spring-data repository of the {@link Person} entity.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 @Repository

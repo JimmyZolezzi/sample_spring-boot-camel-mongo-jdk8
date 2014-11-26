@@ -49,7 +49,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * In addition we activate the profile 'integration-test' in order to define property overrides for
  * the integration tests, so that we can run our tests against a different database.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @see org.springframework.test.context.ActiveProfiles
  * @see org.springframework.test.context.TestExecutionListeners
  * @see org.springframework.test.context.testng.AbstractTestNGSpringContextTests

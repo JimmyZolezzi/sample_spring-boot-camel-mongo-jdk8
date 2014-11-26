@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
  * This camel handler is the actual workhorse of the export camel route. It takes the given {@link
  * com.ewerk.prototype.model.Person} and writes its JSON representation to the file system.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 @Component

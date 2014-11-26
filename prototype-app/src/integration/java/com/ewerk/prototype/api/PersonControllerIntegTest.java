@@ -33,7 +33,7 @@ import java.util.List;
 /**
  * Integration test class for the {@link com.ewerk.prototype.api.PersonController} class.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 public class PersonControllerIntegTest extends AbstractApiIntegTest {

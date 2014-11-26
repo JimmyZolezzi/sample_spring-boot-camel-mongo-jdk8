@@ -30,7 +30,7 @@ import java.time.Month;
 import java.util.List;
 
 /**
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")

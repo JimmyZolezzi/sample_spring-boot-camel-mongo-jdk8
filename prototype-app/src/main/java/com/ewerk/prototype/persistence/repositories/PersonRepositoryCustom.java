@@ -21,7 +21,7 @@ import com.ewerk.prototype.model.Person;
 /**
  * Spring-data custom repository declaration for the {@link Person} entity.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.3
  */
 public interface PersonRepositoryCustom {

@@ -37,7 +37,7 @@ import org.springframework.stereotype.Component;
  * Camel route builder the creates the main export route. Currently it just sets up quartz, the
  * route ID and some properties and then calls the main export handler.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @see org.apache.camel.builder.RouteBuilder
  * @see org.apache.camel.spring.SpringRouteBuilder
  * @since 0.0.4

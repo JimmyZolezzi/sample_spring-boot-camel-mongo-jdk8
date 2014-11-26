@@ -31,7 +31,7 @@ import javax.annotation.Nonnull;
 /**
  * Simple bean that holds all necessary information of a person backup archive.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.5
  */
 @AutoValue

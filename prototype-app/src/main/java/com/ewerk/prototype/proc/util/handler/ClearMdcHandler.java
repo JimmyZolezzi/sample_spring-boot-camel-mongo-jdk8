@@ -22,7 +22,7 @@ import org.slf4j.MDC;
 /**
  * Clears the {@link org.slf4j.MDC} context.
  *
- * @author h.stolzenberg
+ * @author holgerstolzenberg
  * @since 0.0.4
  */
 public class ClearMdcHandler {
