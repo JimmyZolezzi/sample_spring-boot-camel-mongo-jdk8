@@ -3,7 +3,7 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "Debian Wheezy (Vagrant base box)"
+  config.vm.box = "prototype-vm"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
   config.vm.hostname = "prototype-vm"
 
