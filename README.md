@@ -144,10 +144,8 @@ Google `AutoValue` provides a convenient way to write __immutable__ Java beans w
 all the boilerplate code again and again (`toString`, `equals`, `hashCode`, private constructors, ...).
 
 To integrate `AutoValue` to the sample prototype, the following things where necessary:
-* add AutoValue to the `prototype-apps` classpath
-* modify the build script to include a generated source dir
-* let compile task depend on that
-* configure `compileJava` task to compile the auto value classes (see `@AutoValue`)
+* add AutoValue to the `prototype-apps` dependencies
+* use the new EWERK `auto-value-plugin` via Gradle plugin portal
 
 Using `AutoValue` for immutable bean types really fastens up coding and also prevents you from doing 
 all the mistakes that are associated with mutable types. See the fantastic book 
