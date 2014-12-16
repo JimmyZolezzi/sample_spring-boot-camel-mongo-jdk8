@@ -58,6 +58,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * @see org.springframework.boot.test.SpringApplicationConfiguration
  * @since 0.0.3
  */
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 @ActiveProfiles({"default", "integration-test"})
 @SpringApplicationConfiguration(
   classes = {PrototypeApplication.class, PersistenceConfiguration.class, ApiConfiguration.class},

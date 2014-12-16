@@ -13,6 +13,7 @@ plugins {
   id "jacoco"
   id "info.solidsoft.pitest" version "1.1.1"
   id "com.ewerk.gradle.plugins.integration-test" version "1.0.6"
+  id "com.ewerk.gradle.plugins.auto-value" version "1.0.1"
 }
 
 apply plugin: "spring-boot"
@@ -55,33 +56,6 @@ dependencies {
   // Integration testing
   testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
   testCompile "com.jayway.restassured:rest-assured:$restAssuredVersion"
-}
-
-def generatedSourcesDir = file("src/main/generated")
-
-sourceSets {
-  generated {
-    java {
-      srcDirs = [generatedSourcesDir]
-    }
-  }
-}
-
-task init {
-  sourceSets.generated.java.srcDirs.each { dir ->
-    if (dir.exists()) {
-      dir.delete()
-    }
-    dir.mkdirs();
-  }
-}
-
-compileJava.dependsOn init
-
-compileJava {
-  options.compilerArgs = [
-      "-s", generatedSourcesDir.absolutePath
-  ]
 }
 
 test {

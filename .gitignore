@@ -3,7 +3,7 @@ build/
 .vagrant/
 .idea/
 .tmp/
-prototype-app/src/main/generated/
+**/src/auto-value/**
 *.iml
 atlassian-ide-plugin.xml
 *.pid
