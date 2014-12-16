@@ -63,22 +63,19 @@ The `prototype-app` default configuration files (application.properties, logback
 The integration test suite hosts an own application.properties file that overrides some properties (database URI) in order to run the integration tests against the test environment.
 
 ### Global project tasks
-Run the following commands/tasks to get a starting point for the project (ensure `gradlew` is executable).
-* `gradlew tasks` - Show a list of all available tasks
+Run the following commands/tasks to get a starting point for the project (ensure `./gradlew` is executable).
+* `./gradlew tasks` - Show a list of all available tasks
 
 ### Module specific tasks
 #### prototype-vm
-* `gradlew vagrantUp` or native command `vagrant up` for running the VM
-* `gradlew vagrantHalt` or native command `vagrant halt` for halting the VM
+* `./gradlew vagrantUp` or native command `vagrant up` for running the VM
+* `./gradlew vagrantHalt` or native command `vagrant halt` for halting the VM
 * native command `vagrant ssh` for connecting to the VM via SSH
 
 #### prototype-app
-* `gradlew bootRun` to run the prototype app from the command line
-* `gradlew test` run the unit tests
-* `gradlew [clean] build` runs a full build
-
-#### prototype-integration-test
-* `gradlew -P integration [clean] test` runs the integration test suite
+* `./gradlew bootRun` to run the prototype app from the command line
+* `./gradlew test` run the unit tests
+* `./gradlew [clean] build` runs a full build
 
 ## Development virtual machine
 The sample provides a [Debian 7](http://www.debian.org) (Wheezy) based [Vagrant](http://www.vagrantup.com) 
@@ -95,13 +92,17 @@ The VM provisioning by Ansible is organized into roles. The following roles are 
 * `prototype` - A role that install/sets up all stuff needed by the `prototype-app`, e.g. accounts, permissions, ...
 
 ## Integration testing
-The integration test suite is organized into a own gradle sub module `prototype-integration-tests`.
-In our opinion this holds the following advantages, but is still subject to discussion.
+The integration test suite can be find within the `prototype-app` folder `src/integration/java`. We
+are using the EWERK `integration-test-plugin` to run the integration tests. This works like having
+unit tests under `src/test/java`. The `integration-test-plugin` is available through 
+[Gradle Plugin Portal](http://plugins.gradle.org).
+
+In our opinion, this yields some advantages:
 
 * Divide unit test and integration test sources
 * More easy build config (execution)
 * More simple build scripts for each module
-* Leverage default Gradle `test` configuration, no need for additional sourceSets etc.
+* Use jacoco unit test and integration test coverage within a distinct module which can be used by sonar 
 
 The suite is based on the [Spring Testing Framework](http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/testing.html)
 brought in via `spring-boot-starter-test`. It launches the complete Spring Boot application,
@@ -109,11 +110,10 @@ having specific configuration property overrides for the integration tests. Thes
 are triggered because of the additional active profile `integration-test` from the base integration
 test class
 
-The integration tests are disabled by default, so that a full build with unit tests can be run from
-scratch. In order to launch the integration tests, please run the following command (which sets the 
-required Gradle property to activate the integration tests):
+The integration tests are normally not part of the build cycle, so that a full build with unit tests 
+can be run from scratch. In order to launch the integration tests, please run the following command.
 
-`$> gradle -P integration [clean] test`
+`$> ./gradlew integrationTest`
 
 The REST API integration tests are run against a embedded Jetty container. The container boots with 
 a random port number to avoid collisions with running systems, what gets really interesting
