@@ -6,13 +6,14 @@ then
 fi
 
 curl -i \
+    -v \
     -S \
     -s \
     -H "Content-Type:application/json" \
     -H "Transfer-Encoding: chunked" \
     -X POST \
     -d "{ \"lastName\": \"$1\", \"firstName\":\"$2\", \"birthday\": \"$3\" }" \
-    "http://localhost:9090/prototype/api/persons/create"
+    "http://127.0.0.1:9090/prototype/api/persons/create"
 
 echo ""
 echo ""

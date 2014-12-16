@@ -20,11 +20,11 @@ apply plugin: "spring-boot"
 
 dependencies {
   // Spring boot
-  compile "org.springframework.boot:spring-boot-actuator:$springBootVersion"
-  compile "org.springframework.boot:spring-boot-starter-data-mongodb:$springBootVersion"
-  compile "org.springframework.boot:spring-boot-starter-logging:$springBootVersion"
-  compile "org.springframework.boot:spring-boot-starter-jetty:$springBootVersion"
-  compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion") {
+  compile "org.springframework.boot:spring-boot-actuator"
+  compile "org.springframework.boot:spring-boot-starter-data-mongodb"
+  compile "org.springframework.boot:spring-boot-starter-logging"
+  compile "org.springframework.boot:spring-boot-starter-jetty"
+  compile("org.springframework.boot:spring-boot-starter-web") {
     exclude module: "spring-boot-starter-tomcat"
   }
 
@@ -35,17 +35,14 @@ dependencies {
   compile "org.apache.camel:camel-quartz2:$camelVersion"
 
   // Utils
-  compile "com.fasterxml.jackson.core:jackson-core:$jacksonVersion"
-  compile "com.fasterxml.jackson.core:jackson-annotations:$jacksonVersion"
-  compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-  compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion"
+  compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
   compile "com.google.guava:guava:$guavaVersion"
   compile "com.google.auto.value:auto-value:$autoValueVersion"
   compile "edu.washington.cs.types.checker:checker-framework:$checkerFrameworkVersion"
 
   // Testing
+  testCompile "org.springframework.boot:spring-boot-starter-test"
   testCompile "org.testng:testng:$testngVersion"
-  testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
   testCompile "com.jayway.restassured:rest-assured:$restAssuredVersion"
   testCompile "org.assertj:assertj-core:$assertjVersion"
 }
