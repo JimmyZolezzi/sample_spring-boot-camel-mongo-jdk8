@@ -28,9 +28,6 @@ dependencies {
     exclude module: "spring-boot-starter-tomcat"
   }
 
-  // Jetty9
-  compile "org.eclipse.jetty:jetty-webapp:$jettyVersion"
-
   // Camel
   compile("org.apache.camel:camel-spring-javaconfig:$camelVersion") {
     exclude group: "org.springframework", module: "spring-test"

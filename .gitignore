@@ -7,4 +7,4 @@ build/
 *.iml
 atlassian-ide-plugin.xml
 *.pid
-jsp
+**/jsp
