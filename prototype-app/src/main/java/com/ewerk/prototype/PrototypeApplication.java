@@ -19,8 +19,9 @@ package com.ewerk.prototype;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.system.ApplicationPidListener;
+import org.springframework.boot.actuate.system.ApplicationPidFileWriter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -45,15 +46,16 @@ public class PrototypeApplication {
 
   private static final Logger LOG = LoggerFactory.getLogger(LoggerFactory.class);
 
-  private static final String PID_FILE = "prototype.pid";
-
   public static void main(String[] args) {
+    final ApplicationPidFileWriter pidFileWriter = new ApplicationPidFileWriter();
+    pidFileWriter.setTriggerEventType(ApplicationEnvironmentPreparedEvent.class);
+
     SpringApplication application = new SpringApplication(PrototypeApplication.class);
     application.setHeadless(true);
     application.setRegisterShutdownHook(true);
     application.setLogStartupInfo(false);
     application.setWebEnvironment(true);
-    application.addListeners(new ApplicationPidListener(PID_FILE));
+    application.addListeners(pidFileWriter);
     application.run(args);
 
     LOG.info("Prototype launched [OK]");

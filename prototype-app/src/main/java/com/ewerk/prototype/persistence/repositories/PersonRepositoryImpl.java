@@ -23,9 +23,7 @@ import com.ewerk.prototype.persistence.UniqueViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
-import javax.annotation.Nonnull;
+import org.springframework.stereotype.Component;
 
 /**
  * Default implementation of the custom spring-data repository of the {@link Person} entity.
@@ -33,7 +31,7 @@ import javax.annotation.Nonnull;
  * @author holgerstolzenberg
  * @since 0.0.3
  */
-@Repository
+@Component
 public class PersonRepositoryImpl implements PersonRepositoryCustom {
 
   private static final Logger LOG = LoggerFactory.getLogger(LoggerFactory.class);
