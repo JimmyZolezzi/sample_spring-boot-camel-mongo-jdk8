@@ -33,3 +33,4 @@
     name=mongod
     state=restarted
     enabled=yes
+    sleep=10

@@ -2,12 +2,12 @@
 - name: "Add webupd8team APT repository"
   apt_repository:
     repo="deb http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main"
-    state="present"
+    state=present
 
 - name: "Add webupd8team APT src repository"
   apt_repository:
     repo="deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu trusty main"
-    state="present"
+    state=present
 
 - name: "Import APT key for JDK-8 repository"
   apt_key:
