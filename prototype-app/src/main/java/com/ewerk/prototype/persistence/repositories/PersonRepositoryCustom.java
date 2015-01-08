@@ -26,4 +26,6 @@ import com.ewerk.prototype.model.Person;
  */
 public interface PersonRepositoryCustom {
   Person create(Person person);
+
+  Iterable<Person> locate(String lastName, String firstName);
 }

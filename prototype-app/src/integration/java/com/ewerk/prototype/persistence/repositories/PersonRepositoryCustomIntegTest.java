@@ -73,4 +73,14 @@ public class PersonRepositoryCustomIntegTest extends AbstractIntegTest {
     // 2nd persist should cause unique violation
     personRepositoryCustom.create(john);
   }
+
+  @Test
+  public void testLocate() {
+    personRepository.deleteAll();
+    Person created = personRepositoryCustom.create(john);
+
+    final Iterable<Person> persons = personRepositoryCustom.locate("Smith", "John");
+    assertThat(persons).hasSize(1);
+    assertThat(persons.iterator().next()).isEqualTo(created);
+  }
 }

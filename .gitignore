@@ -4,6 +4,7 @@ build/
 .idea/
 .tmp/
 **/src/auto-value/**
+**/src/querydsl/**
 *.iml
 atlassian-ide-plugin.xml
 *.pid

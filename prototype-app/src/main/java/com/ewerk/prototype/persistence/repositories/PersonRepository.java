@@ -18,6 +18,7 @@ package com.ewerk.prototype.persistence.repositories;
 
 import com.ewerk.prototype.model.Person;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.querydsl.QueryDslPredicateExecutor;
 
 import java.util.List;
 
@@ -31,7 +32,8 @@ import javax.annotation.Nonnull;
  * @see org.springframework.data.mongodb.repository.MongoRepository
  * @since 0.0.1
  */
-public interface PersonRepository extends MongoRepository<Person, String> {
+public interface PersonRepository
+  extends MongoRepository<Person, String>, QueryDslPredicateExecutor<Person> {
 
   public List<Person> findByLastName(@Nonnull String lastName);
 

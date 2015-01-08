@@ -16,10 +16,12 @@
 
 package com.ewerk.prototype.persistence.repositories;
 
+import static com.ewerk.prototype.model.QPerson.person;
 import static com.google.common.base.Preconditions.checkArgument;
 
 import com.ewerk.prototype.model.Person;
 import com.ewerk.prototype.persistence.UniqueViolationException;
+import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +55,14 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
 
     LOG.debug("Created: {}", person);
     return personRepository.save(person);
+  }
+
+  @Override
+  public Iterable<Person> locate(final String lastName, final String firstName) {
+    checkArgument(!Strings.isNullOrEmpty(lastName));
+    checkArgument(!Strings.isNullOrEmpty(firstName));
+
+    return personRepository.findAll(
+      person.lastName.eq(lastName).and(person.firstName.eq(firstName)));
   }
 }

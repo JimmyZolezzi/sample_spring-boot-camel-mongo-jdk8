@@ -14,6 +14,7 @@ plugins {
   id "info.solidsoft.pitest" version "1.1.1"
   id "com.ewerk.gradle.plugins.integration-test" version "1.0.6"
   id "com.ewerk.gradle.plugins.auto-value" version "1.0.1"
+  id "com.ewerk.gradle.plugins.querydsl" version "1.0.1"
 }
 
 apply plugin: "spring-boot"
@@ -27,6 +28,9 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-web") {
     exclude module: "spring-boot-starter-tomcat"
   }
+
+  // Persistence
+  compile "com.mysema.querydsl:querydsl-mongodb:$querydslVersion"
 
   // Camel
   compile("org.apache.camel:camel-spring-javaconfig:$camelVersion") {
@@ -45,6 +49,10 @@ dependencies {
   testCompile "org.testng:testng:$testngVersion"
   testCompile "com.jayway.restassured:rest-assured:$restAssuredVersion"
   testCompile "org.assertj:assertj-core:$assertjVersion"
+}
+
+querydsl {
+  springDataMongo = true
 }
 
 test {
