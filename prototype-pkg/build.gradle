@@ -1,0 +1,58 @@
+plugins {
+  id "nebula.os-package" version "2.0.3"
+}
+
+/*
+ * the build dir of 'prototype-pkg' module is mounted to the dev vm so that the RPM can be
+ * inspected using the command
+ *
+ * rpm -q -l -p -i -v /opt/prototype-pkg/build/distributions/*.rpm
+ * dpkg-deb -c /opt/prototype-pkg/build/distributions/prototype_0.0.6.SNAPSHOT_all.deb
+ */
+ospackage {
+  def pkg = "prototype"
+
+  version = "${project.version}".replaceAll("\\-", ".")
+
+  packageName = pkg
+  packageGroup = "EWERK/Prototype"
+  user = "prototype"
+  permissionGroup = "prototype"
+  summary = "EWERK Sample Application"
+  vendor = "EWERK IT GmbH"
+  url = "http://www.ewerk.com"
+  provides = "prototype"
+  createDirectoryEntry = true
+  addParentDirs = true
+  arch = "X86_64"
+  os = "LINUX"
+  type = BINARY
+  license = "Apache 2.0"
+
+  preInstall file("src/install/pre-install.sh")
+  postInstall file("src/install/post-install.sh")
+
+  preUninstall file("src/install/pre-uninstall.sh")
+  postUninstall file("src/install/post-uninstall.sh")
+
+  def base = "/opt/$pkg"
+
+  from("src/etc") {
+    into "$base/etc"
+  }
+  from("src/bin") {
+    into "$base/bin"
+    fileMode 0744
+  }
+  from(project(":prototype-app").tasks.jar.destinationDir) {
+    into "$base/lib"
+    include "*.jar"
+  }
+
+  link("/etc/init.d/$pkg", "/opt/$pkg/bin/init.sh", 0744)
+  link("/etc/$pkg", "/opt/$pkg/etc")
+  link("/var/log/$pkg", "/opt/$pkg/log")
+}
+
+buildRpm.dependsOn project(":prototype-app").build
+buildDeb.dependsOn project(":prototype-app").build

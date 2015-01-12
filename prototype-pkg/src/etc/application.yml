@@ -1,0 +1,52 @@
+# Spring boot settings
+spring:
+  application:
+    name: Prototype
+
+  pidfile: /opt/prototype/var/prototype.pid
+
+  jmx:
+    enabled: false
+
+  data:
+    mongodb:
+      uri: mongodb://prototype:changeit@localhost:27017/prototype_db
+      min-connections: 2
+      max-connections: 5
+      connect-timeout: 5000
+      socket-timeout: 5000
+
+# --------------------------------------------------------------------------------------------------
+
+logging:
+  config: /etc/prototype/logback.xml
+
+# --------------------------------------------------------------------------------------------------
+
+# The embedded server settings
+server:
+  address: 127.0.0.1
+  port: 9090
+  context-path: /prototype
+
+# --------------------------------------------------------------------------------------------------
+
+# Customise active actuator endpoints
+endpoints:
+  configprops:
+    enabled: false
+  info:
+    enabled: false
+  shutdown:
+    enabled: false
+
+# --------------------------------------------------------------------------------------------------
+
+# Scheduler configuration
+scheduler:
+  auto-start: true
+  startup-delay-seconds: 5
+  cron-exp-export: "0/15 * * * * ?"
+  cron-exp-archiving: "0/30 * * * * ?"
+
+# --------------------------------------------------------------------------------------------------

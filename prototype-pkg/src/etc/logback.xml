@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="20 seconds">
+
+  <contextListener class="ch.qos.logback.classic.jul.LevelChangePropagator">
+    <resetJUL>true</resetJUL>
+  </contextListener>
+
+  <property name="LOG_PATTERN"
+      value="%cyan(%d{HH:mm:ss.SSS}) | %magenta(%-15thread{12}) | %green(%-40logger{35}) | %-4L | %highlight(%-5level) | %X{label} | %X{uid} - %boldWhite(%m) %ex %n"/>
+
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>/opt/applus/log/application-%d{yyyy-MM-dd}.log</fileNamePattern>
+      <maxHistory>10</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>${LOG_PATTERN}</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="com.ewerk.prototype" additivity="false">
+    <level value="INFO"/>
+    <appender-ref ref="FILE"/>
+  </logger>
+
+  <logger name="org.springframework.boot" additivity="false">
+    <level value="INFO"/>
+    <appender-ref ref="FILE"/>
+  </logger>
+  <logger name="org.springframework.jms" additivity="false">
+    <level value="ERROR"/>
+    <appender-ref ref="FILE"/>
+  </logger>
+  <logger name="org.apache.activemq" additivity="false">
+    <level value="ERROR"/>
+    <appender-ref ref="FILE"/>
+  </logger>
+  <logger name="org.springframework" additivity="false">
+    <level value="ERROR"/>
+    <appender-ref ref="FILE"/>
+  </logger>
+  <logger name="ch.qos.logback" additivity="false">
+    <level value="ERROR"/>
+    <appender-ref ref="FILE"/>
+  </logger>
+
+  <root>
+    <level value="ERROR"/>
+    <appender-ref ref="FILE"/>
+  </root>
+
+</configuration>
