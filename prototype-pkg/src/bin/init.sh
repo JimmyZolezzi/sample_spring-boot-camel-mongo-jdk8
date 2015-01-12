@@ -2,7 +2,7 @@
 #
 
 ### BEGIN INIT INFO
-# Provides:          applus
+# Provides:          prototype
 # Required-Start:    $local_fs $remote_fs $network $syslog
 # Required-Stop:     $local_fs $remote_fs $network $syslog
 # Default-Start:     3 5
