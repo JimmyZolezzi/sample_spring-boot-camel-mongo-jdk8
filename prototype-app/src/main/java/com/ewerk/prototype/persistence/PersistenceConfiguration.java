@@ -29,8 +29,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.data.mongodb.core.convert.CustomConversions;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This configuration class is used to setup the connection to the MongoDB instance. Here we should
@@ -48,13 +47,19 @@ public class PersistenceConfiguration {
 
   private static final Logger LOG = LoggerFactory.getLogger(LoggerFactory.class);
 
+  private static final DateToLocalDateConverter DATE_TO_LOCAL_DATE_CONVERTER =
+    new DateToLocalDateConverter();
+
+  private static final LocalDateToDateConverter LOCAL_DATE_TO_DATE_CONVERTER =
+    new LocalDateToDateConverter();
+
+  private static final List<? extends Converter<?, ?>> CONVERTERS =
+    Lists.newArrayList(DATE_TO_LOCAL_DATE_CONVERTER, LOCAL_DATE_TO_DATE_CONVERTER);
+
   @Bean
   public CustomConversions customConversions() {
-    final ArrayList<? extends Converter<? extends Serializable, ? extends Serializable>>
-      converters =
-      Lists.newArrayList(new DateToLocalDateConverter(), new LocalDateToDateConverter());
-    LOG.info("Register converters: " + converters);
-    return new CustomConversions(converters);
+    LOG.info("Register converters: {}", CONVERTERS);
+    return new CustomConversions(CONVERTERS);
   }
 
   /**

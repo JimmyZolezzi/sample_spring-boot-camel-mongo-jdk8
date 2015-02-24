@@ -32,10 +32,6 @@ import org.springframework.context.annotation.Configuration;
  * do not go this way in this example, as we want to use more purpose specific configuration
  * classes.<br/><br/>
  *
- * The app registers a {@link org.springframework.boot.actuate.system.ApplicationPidListener} and
- * writes a PID file {@link PrototypeApplication#PID_FILE} to the current directory. The path is
- * currently not configurable through spring-boot itself.
- *
  * @author holgerstolzenberg
  * @since 0.0.1
  */
