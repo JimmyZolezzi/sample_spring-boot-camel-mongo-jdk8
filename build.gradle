@@ -1,18 +1,7 @@
-buildscript {
-  repositories {
-    mavenCentral()
-  }
-
-  dependencies {
-    classpath "com.github.townsfolk:gradle-release:1.2"
-  }
-}
-
 plugins {
   id "wrapper"
+  id "net.researchgate.release" version "2.0.2"
 }
-
-apply plugin: "release"
 
 allprojects {
   repositories {
@@ -25,7 +14,7 @@ allprojects {
 }
 
 wrapper {
-  gradleVersion = "2.2"
+  gradleVersion = "2.3"
 }
 
 release {
