@@ -1,5 +1,5 @@
 plugins {
-  id "nebula.os-package" version "2.0.3"
+  id "nebula.os-package" version "2.2.0"
 }
 
 /*
