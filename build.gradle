@@ -4,7 +4,7 @@ plugins {
 }
 
 wrapper {
-  gradleVersion = "2.10"
+  gradleVersion = '2.10'
 }
 
 sweeney {
