@@ -31,7 +31,7 @@ configurations {
 dependencies {
   // Spring boot
   compile 'org.springframework.boot:spring-boot-actuator'
-  optional 'org.springframework.boot:spring-boot-configuration-processor'
+  compile 'org.springframework.boot:spring-boot-configuration-processor'
   compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
   compile 'org.springframework.boot:spring-boot-starter-logging'
   compile 'org.springframework.boot:spring-boot-starter-jetty'
