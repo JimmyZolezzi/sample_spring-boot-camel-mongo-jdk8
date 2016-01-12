@@ -17,6 +17,7 @@
 package com.ewerk.prototype.model;
 
 import static java.time.LocalDate.of;
+import static java.time.Month.APRIL;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.ewerk.prototype.AbstractUnitTest;
@@ -24,15 +25,16 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
-import java.time.Month;
 
 public class PersonTest extends AbstractUnitTest {
   private static final String ID = "SJ";
   private static final String LAST_NAME = "Smith";
   private static final String FIRST_NAME = "John";
-  private static final LocalDate BIRTHDAY = of(2014, Month.APRIL, 1);
+  private static final LocalDate BIRTHDAY = of(2014, APRIL, 1);
+  private static final LocalDate BIRTHDAY_2 = of(2014, APRIL, 2);
 
   private Person person;
+  private Person other;
 
   @BeforeMethod
   public void setup() {
@@ -41,6 +43,12 @@ public class PersonTest extends AbstractUnitTest {
     person.setLastName(LAST_NAME);
     person.setFirstName(FIRST_NAME);
     person.setBirthday(BIRTHDAY);
+
+    other = new Person();
+    other.setId(ID);
+    other.setLastName(LAST_NAME);
+    other.setFirstName(FIRST_NAME);
+    other.setBirthday(BIRTHDAY_2);
   }
 
   @Test
@@ -61,6 +69,20 @@ public class PersonTest extends AbstractUnitTest {
   @Test
   public void testGetBirthday() {
     assertThat(person.getBirthday()).isEqualTo(BIRTHDAY);
+  }
+
+  @Test
+  public void testEquals() {
+    assertThat(person).isNotEqualTo(other);
+    assertThat(person).isNotEqualTo(null);
+    assertThat(person).isEqualTo(person);
+  }
+
+  @Test
+  public void testHashCode() {
+    assertThat(person.hashCode()).isNotEqualTo(other.hashCode());
+    assertThat(person.hashCode()).isNotEqualTo(null);
+    assertThat(person.hashCode()).isEqualTo(person.hashCode());
   }
 
   @Test
