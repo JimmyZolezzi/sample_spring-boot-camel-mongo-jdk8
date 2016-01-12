@@ -20,7 +20,6 @@ plugins {
 }
 
 apply plugin: "spring-boot"
-apply plugin: "propdeps"
 
 configurations {
   all*.exclude(group: 'commons-logging')
