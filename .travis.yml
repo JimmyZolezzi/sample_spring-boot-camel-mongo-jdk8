@@ -6,6 +6,8 @@ jdk:
 before_install:
  - chmod +x gradlew
 
+install: ./gradlew check
+
 script: ./gradlew build
 
 branches:
