@@ -21,6 +21,10 @@ plugins {
 
 apply plugin: "spring-boot"
 
+repositories {
+  mavenCentral()
+}
+
 configurations {
   all*.exclude(group: 'commons-logging')
   all*.exclude(group: 'org.apache.tomcat')
