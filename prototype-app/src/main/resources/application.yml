@@ -6,8 +6,6 @@
 # the Spring Boot reference guide
 # http://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#common-application-properties
 #
-# Please note that the file is a mixture of non spring-boot and spring-boot properties
-#
 # --------------------------------------------------------------------------------------------------
 
 # Spring boot settings
@@ -15,7 +13,8 @@ spring:
   application:
     name: Prototype
 
-  pidfile: build/prototype.pid
+  pid:
+    file: build/prototype.pid
 
   jmx:
     enabled: false
@@ -23,15 +22,18 @@ spring:
   data:
     mongodb:
       uri: mongodb://prototype:changeit@localhost:27017/prototype_db_dev
-      min-connections: 2
-      max-connections: 5
-      connect-timeout: 5000
-      socket-timeout: 5000
+
+# --------------------------------------------------------------------------------------------------
+mongo:
+  min-connections: 2
+  max-connections: 5
+  connect-timeout-ms: 5000
+  socket-timeout-ms: 5000
 
 # --------------------------------------------------------------------------------------------------
 
 logging:
-  config: classpath:/logback.xml
+  config: classpath:logback.xml
 
 # --------------------------------------------------------------------------------------------------
 

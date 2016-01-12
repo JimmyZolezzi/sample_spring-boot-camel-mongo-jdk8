@@ -19,7 +19,7 @@ package com.ewerk.prototype.proc.util;
 import org.apache.camel.spring.SpringRouteBuilder;
 
 /**
- * Abstract base class for all quartz based Camel {@link org.apache.camel.spring.SpringRouteBuilder}
+ * Abstract base class for all quartz based Camel {@link SpringRouteBuilder}
  * classes used for the business processes. Provides some accessor methods that are useful to be
  * used within the routes.
  *
@@ -31,7 +31,7 @@ public abstract class AbstractQuartzRouteBuilder extends SpringRouteBuilder {
   private final String cronExp;
   private final boolean schedulerAutoStart;
 
-  public AbstractQuartzRouteBuilder(final String cronExp, final boolean schedulerAutoStart) {
+  protected AbstractQuartzRouteBuilder(final String cronExp, final boolean schedulerAutoStart) {
     this.cronExp = cronExp;
     this.schedulerAutoStart = schedulerAutoStart;
   }

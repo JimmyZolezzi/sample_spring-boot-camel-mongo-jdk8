@@ -2,7 +2,6 @@
  - hosts: all
    sudo: yes
    vars:
-     mongoVersion: 2.6.4
      password: changeit
    roles:
      - shell-utils

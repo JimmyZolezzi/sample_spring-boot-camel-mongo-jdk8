@@ -1,22 +1,12 @@
 plugins {
   id "wrapper"
-  id "net.researchgate.release" version "2.0.2"
-}
-
-allprojects {
-  repositories {
-    mavenCentral()
-  }
-
-  configurations.all({ conf ->
-    conf.exclude group: "commons-logging"
-  })
+  id 'com.fizzpod.sweeney' version '1.1.1'
 }
 
 wrapper {
-  gradleVersion = "2.3"
+  gradleVersion = "2.10"
 }
 
-release {
-  requireBranch = "release"
+sweeney {
+  enforce type: 'jdk', expect: "[$sourceCompatibility, $sourceCompatibility]"
 }

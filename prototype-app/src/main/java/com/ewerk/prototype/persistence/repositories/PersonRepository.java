@@ -29,13 +29,13 @@ import javax.annotation.Nonnull;
  * store.
  *
  * @author holgerstolzenberg
- * @see org.springframework.data.mongodb.repository.MongoRepository
+ * @see MongoRepository
  * @since 0.0.1
  */
 public interface PersonRepository
-  extends MongoRepository<Person, String>, QueryDslPredicateExecutor<Person> {
+    extends MongoRepository<Person, String>, QueryDslPredicateExecutor<Person> {
 
-  public List<Person> findByLastName(@Nonnull String lastName);
+  List<Person> findByLastName(@Nonnull String lastName);
 
-  public Person findByLastNameAndFirstName(@Nonnull String lastName, @Nonnull String firstName);
+  Person findByLastNameAndFirstName(@Nonnull String lastName, @Nonnull String firstName);
 }

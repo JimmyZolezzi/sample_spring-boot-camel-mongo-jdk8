@@ -16,22 +16,26 @@
 
 package com.ewerk.prototype.persistence.converters;
 
+import static java.time.ZoneId.systemDefault;
+import static java.util.Date.from;
+
+import org.jetbrains.annotations.Nullable;
 import org.springframework.core.convert.converter.Converter;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Date;
 
 public class LocalDateToDateConverter implements Converter<LocalDate, Date> {
-  public static final String TO_STRING =
-    "{" + LocalDate.class.getSimpleName() + " -> " + Date.class.getSimpleName() + "}";
+  private static final String TO_STRING =
+      '{' + LocalDate.class.getSimpleName() + " -> " + Date.class.getSimpleName() + '}';
 
+  @Nullable
   @Override
-  public Date convert(LocalDate localDate) {
+  public Date convert(final LocalDate localDate) {
     if (localDate == null) {
       return null;
     }
-    return Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    return from(localDate.atStartOfDay(systemDefault()).toInstant());
   }
 
   @Override

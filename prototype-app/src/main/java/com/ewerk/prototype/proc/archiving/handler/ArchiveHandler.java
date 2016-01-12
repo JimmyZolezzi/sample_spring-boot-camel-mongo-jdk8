@@ -16,12 +16,13 @@
 
 package com.ewerk.prototype.proc.archiving.handler;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import com.ewerk.prototype.model.Person;
 import com.ewerk.prototype.persistence.repositories.PersonRepository;
 import com.ewerk.prototype.proc.archiving.model.Archive;
 import org.apache.camel.Handler;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +36,7 @@ import java.util.List;
  */
 @Component
 public class ArchiveHandler {
-  private static final Logger LOG = LoggerFactory.getLogger(ArchiveHandler.class);
+  private static final Logger LOG = getLogger(ArchiveHandler.class);
 
   @Autowired
   private PersonRepository personRepository;
@@ -43,7 +44,7 @@ public class ArchiveHandler {
   @Handler
   public void archive() {
     final List<Person> persons = personRepository.findAll();
-    if (persons == null || persons.isEmpty()) {
+    if ((persons == null) || persons.isEmpty()) {
       LOG.info("Nothing to backup");
       return;
     }

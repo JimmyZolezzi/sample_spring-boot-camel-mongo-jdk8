@@ -20,7 +20,7 @@ import org.apache.camel.Handler;
 import org.slf4j.MDC;
 
 /**
- * Clears the {@link org.slf4j.MDC} context.
+ * Clears the {@link MDC} context.
  *
  * @author holgerstolzenberg
  * @since 0.0.4

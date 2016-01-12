@@ -17,6 +17,10 @@
 package com.ewerk.prototype.proc.util;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static java.util.regex.Pattern.compile;
+
+import java.util.regex.Pattern;
 
 /**
  * Utility class for creating various types of URIs.
@@ -25,16 +29,16 @@ import static com.google.common.base.Preconditions.checkArgument;
  * @since 0.0.4
  */
 public final class UriBuilder {
+  private static final Pattern PATTERN = compile(" ");
 
   private UriBuilder() {
   }
 
   public static String quartz(final String name, final String cronExp) {
-    checkArgument(name != null && !name.isEmpty(),
-      "The argument 'name' must not be null or empty.");
-    checkArgument(cronExp != null && !cronExp.isEmpty(),
-      "The argument 'cronExp' must not be null or empty.");
+    checkArgument(!isNullOrEmpty(name), "The argument 'name' must not be null or empty.");
+    checkArgument(!isNullOrEmpty(cronExp), "The argument 'cronExp' must not be null or empty.");
 
-    return "quartz2://rts/" + name + "?cron=" + cronExp.replaceAll(" ", "+") + "&stateful=true";
+    return "quartz2://rts/" + name + "?cron=" + PATTERN.matcher(cronExp).replaceAll("+")
+        + "&stateful=true";
   }
 }

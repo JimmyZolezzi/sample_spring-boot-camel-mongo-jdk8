@@ -3,21 +3,13 @@
 - name: Copying check script
   copy: src=check_user.js dest=/home/vagrant
 
-- name: Checking MongoDB DEV user existance
-  command: mongo localhost:27017/prototype_db_dev /home/vagrant/check_user.js
-  register: mongo_user_dev
-
-- name: Checking MongoDB INTEG_TEST user existance
-  command: mongo localhost:27017/prototype_db_dev /home/vagrant/check_user.js
-  register: mongo_user_integtest
-
 - name: Copying create user script
   copy: src=create_user.js dest=/home/vagrant
 
 - name: Create MongoDB user prototype@prototype_db_dev
-  command: mongo localhost:27017/prototype_db_dev create_user.js chdir=/home/vagrant
-  when: mongo_user_dev.stdout.find('auth failed') != -1
+  command: mongo localhost:27017/prototype_db_dev /home/vagrant/create_user.js
+  ignore_errors: yes
 
 - name: Create MongoDB user prototype@prototype_db_integration_test
   command: mongo localhost:27017/prototype_db_integration_test create_user.js chdir=/home/vagrant
-  when: mongo_user_integtest.stdout.find('auth failed') != -1
+  ignore_errors: yes

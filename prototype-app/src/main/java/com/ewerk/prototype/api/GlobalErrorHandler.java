@@ -16,9 +16,10 @@
 
 package com.ewerk.prototype.api;
 
+import static org.slf4j.LoggerFactory.getLogger;
+import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
+
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,18 +35,18 @@ import javax.annotation.Nonnull;
  */
 @ControllerAdvice
 public class GlobalErrorHandler {
-  private static final Logger LOG = LoggerFactory.getLogger(GlobalErrorHandler.class);
+  private static final Logger LOG = getLogger(GlobalErrorHandler.class);
 
   /**
    * Called upon internal error. Cannot be called asynchronously.
    *
    * @param exception The exception that was thrown internally.
-   * @return A {@link org.springframework.http.ResponseEntity} with status 500
+   * @return A {@link ResponseEntity} with status 500
    * (INTERNAL_SERVER_ERROR) and the exception message
    */
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleException(@Nonnull Exception exception) {
+  public ResponseEntity<String> handleException(@Nonnull final Exception exception) {
     LOG.error("Internal server error", exception);
-    return new ResponseEntity<>(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    return new ResponseEntity<>(exception.getMessage(), INTERNAL_SERVER_ERROR);
   }
 }

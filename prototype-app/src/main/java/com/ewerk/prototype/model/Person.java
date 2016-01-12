@@ -16,7 +16,11 @@
 
 package com.ewerk.prototype.model;
 
-import com.google.common.base.MoreObjects;
+import static com.google.common.base.MoreObjects.toStringHelper;
+import static com.google.common.base.Objects.equal;
+import static org.springframework.format.annotation.DateTimeFormat.ISO.DATE;
+
+import com.google.common.base.Objects;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -32,7 +36,6 @@ import java.time.LocalDate;
  */
 @Document
 public final class Person {
-
   @Id
   private String id;
 
@@ -42,11 +45,8 @@ public final class Person {
   private String lastName;
 
   @Indexed
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @DateTimeFormat(iso = DATE)
   private LocalDate birthday;
-
-  public Person() {
-  }
 
   public String getId() {
     return id;
@@ -80,36 +80,32 @@ public final class Person {
     this.birthday = birthday;
   }
 
+  @SuppressWarnings("NonFinalFieldReferenceInEquals")
   @Override
   public boolean equals(final Object o) {
-    if (this == o) {
+    if (this == o)
       return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
+    if ((o == null) || (getClass() != o.getClass()))
       return false;
-    }
-
     final Person person = (Person) o;
-
-    return birthday.equals(person.birthday) && firstName.equals(person.firstName)
-      && lastName.equals(person.lastName);
+    return equal(id, person.id) &&
+        equal(firstName, person.firstName) &&
+        equal(lastName, person.lastName) &&
+        equal(birthday, person.birthday);
   }
 
+  @SuppressWarnings("NonFinalFieldReferencedInHashCode")
   @Override
   public int hashCode() {
-    int result = firstName.hashCode();
-    result = 31 * result + lastName.hashCode();
-    result = 31 * result + birthday.hashCode();
-    return result;
+    return Objects.hashCode(id, firstName, lastName, birthday);
   }
 
   @Override
   public String toString() {
-    return MoreObjects.toStringHelper(this)
-      .add("id", id)
-      .add("lastName", lastName)
-      .add("firstName", firstName)
-      .add("birthday", birthday)
-      .toString();
+    return toStringHelper(this).add("id", id)
+        .add("lastName", lastName)
+        .add("firstName", firstName)
+        .add("birthday", birthday)
+        .toString();
   }
 }

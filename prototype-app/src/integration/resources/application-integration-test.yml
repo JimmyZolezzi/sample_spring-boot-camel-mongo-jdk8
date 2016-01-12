@@ -5,7 +5,6 @@
 # --------------------------------------------------------------------------------------------------
 
 spring:
-  profiles: integration-test
   data:
     mongodb:
       uri: mongodb://prototype:changeit@localhost:27017/prototype_db_integration_test

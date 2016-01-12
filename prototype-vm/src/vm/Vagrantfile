@@ -2,15 +2,14 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-
   config.vm.box = "prototype-vm"
-  config.vm.box_url = "http://files.vagrantup.com/precise64.box"
+  config.vm.box_url = "https://github.com/holms/vagrant-jessie-box/releases/download/Jessie-v0.1/Debian-jessie-amd64-netboot.box"
   config.vm.hostname = "prototype-vm"
 
   # Forward MongoDB port
   config.vm.network :forwarded_port, guest: 27017, host: 27017
 
-   config.vm.synced_folder "../../../prototype-pkg", "/opt/prototype-pkg"
+  config.vm.synced_folder "../../../prototype-pkg", "/opt/prototype-pkg"
 
   config.vm.provider :virtualbox do |vb|
     # Use VBoxManage to customize the VM

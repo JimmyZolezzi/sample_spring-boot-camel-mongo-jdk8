@@ -16,6 +16,8 @@
 
 package com.ewerk.prototype.persistence;
 
+import static java.lang.String.format;
+
 /**
  * Exception class used for specific exception that may occur during runtime accessing the
  * persistence layer.
@@ -24,7 +26,7 @@ package com.ewerk.prototype.persistence;
  * @since 0.0.3
  */
 public final class UniqueViolationException extends RuntimeException {
-  public UniqueViolationException(final String message, Object... args) {
-    super(String.format(message, args));
+  public UniqueViolationException(final String message, final Object... args) {
+    super(format(message, args));
   }
 }

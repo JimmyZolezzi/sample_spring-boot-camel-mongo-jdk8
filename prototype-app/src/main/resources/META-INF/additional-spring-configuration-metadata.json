@@ -1,0 +1,44 @@
+{
+  "properties": [
+    {
+      "name": "scheduler.auto-start",
+      "type": "java.lang.String",
+      "description": "Should the internal scheduler be started. Can be [true|false]."
+    },
+    {
+      "name": "scheduler.startup-delay-seconds",
+      "type": "java.lang.String",
+      "description": "How long in seconds to wait after application start until the quartz triggers are fired."
+    },
+    {
+      "name": "scheduler.cron-exp-export",
+      "type": "java.lang.String",
+      "description": "The Quartz cron expression used to trigger the export process."
+    },
+    {
+      "name": "scheduler.cron-exp-archiving",
+      "type": "java.lang.String",
+      "description": "The Quartz cron expression used to trigger the archiving process."
+    },
+    {
+      "name": "mongo.min-connections",
+      "type": "java.lang.String",
+      "description": "Mongo connection pool at least open connections."
+    },
+    {
+      "name": "mongo.max-connections",
+      "type": "java.lang.String",
+      "description": "Mongo connection pool at maximum open connections."
+    },
+    {
+      "name": "mongo.connect-timeout-ms",
+      "type": "java.lang.String",
+      "description": "Connection timeout to the Mongo DB in milliseconds."
+    },
+    {
+      "name": "mongo.socket-timeout-ms",
+      "type": "java.lang.String",
+      "description": "Connection timeout to the Mongo DB in milliseconds."
+    }
+  ]
+}

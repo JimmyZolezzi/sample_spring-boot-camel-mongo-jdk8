@@ -16,9 +16,11 @@
 
 package com.ewerk.prototype.persistence;
 
+import static com.google.common.collect.Lists.newArrayList;
+import static org.slf4j.LoggerFactory.getLogger;
+
 import com.ewerk.prototype.persistence.converters.DateToLocalDateConverter;
 import com.ewerk.prototype.persistence.converters.LocalDateToDateConverter;
-import com.google.common.collect.Lists;
 import com.mongodb.MongoClientOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,8 +38,8 @@ import java.util.List;
  * provide all the beans necessary for the persistence layer or for customizing the mongo setup.
  *
  * @author holgerstolzenberg
- * @see org.springframework.context.annotation.Configuration
- * @see org.springframework.data.mongodb.repository.config.EnableMongoRepositories
+ * @see Configuration
+ * @see EnableMongoRepositories
  * @see org.springframework.transaction.annotation.EnableTransactionManagement
  * @since 0.0.2
  */
@@ -45,16 +47,16 @@ import java.util.List;
 @EnableMongoRepositories
 public class PersistenceConfiguration {
 
-  private static final Logger LOG = LoggerFactory.getLogger(LoggerFactory.class);
+  private static final Logger LOG = getLogger(LoggerFactory.class);
 
-  private static final DateToLocalDateConverter DATE_TO_LOCAL_DATE_CONVERTER =
-    new DateToLocalDateConverter();
+  private static final DateToLocalDateConverter DATE_TO_LOCAL_DATE_CONVERTER = new
+      DateToLocalDateConverter();
 
-  private static final LocalDateToDateConverter LOCAL_DATE_TO_DATE_CONVERTER =
-    new LocalDateToDateConverter();
+  private static final LocalDateToDateConverter LOCAL_DATE_TO_DATE_CONVERTER = new
+      LocalDateToDateConverter();
 
-  private static final List<? extends Converter<?, ?>> CONVERTERS =
-    Lists.newArrayList(DATE_TO_LOCAL_DATE_CONVERTER, LOCAL_DATE_TO_DATE_CONVERTER);
+  private static final List<? extends Converter<?, ?>> CONVERTERS = newArrayList(
+      DATE_TO_LOCAL_DATE_CONVERTER, LOCAL_DATE_TO_DATE_CONVERTER);
 
   @Bean
   public CustomConversions customConversions() {
@@ -68,22 +70,22 @@ public class PersistenceConfiguration {
    * @return A {@link MongoClientOptions} bean that is used by the {@link
    * org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration} when creating the {@link
    * com.mongodb.Mongo} facade
-   * @see com.mongodb.MongoClientOptions
+   * @see MongoClientOptions
    * @see org.springframework.core.env.Environment
    */
   @Bean
   public MongoClientOptions mongoClientOptions(
-    @Value("${spring.data.mongodb.min-connections:2}") final int minConnections,
-    @Value("${spring.data.mongodb.max-connections:10}") final int maxConnections,
-    @Value("${spring.data.mongodb.socket-connect.ms:5000}") final int connectTimeout,
-    @Value("${spring.data.mongodb.socket-timeout.ms:5000}") final int socketTimeout) {
+      @Value("${spring.data.mongodb.min-connections:2}") final int minConnections,
+      @Value("${spring.data.mongodb.max-connections:10}") final int maxConnections,
+      @Value("${spring.data.mongodb.socket-connect.ms:5000}") final int connectTimeout,
+      @Value("${spring.data.mongodb.socket-timeout.ms:5000}") final int socketTimeout) {
 
     return MongoClientOptions.builder()
-      .legacyDefaults()
-      .minConnectionsPerHost(minConnections)
-      .connectionsPerHost(maxConnections)
-      .connectTimeout(connectTimeout)
-      .socketTimeout(socketTimeout)
-      .build();
+        .legacyDefaults()
+        .minConnectionsPerHost(minConnections)
+        .connectionsPerHost(maxConnections)
+        .connectTimeout(connectTimeout)
+        .socketTimeout(socketTimeout)
+        .build();
   }
 }

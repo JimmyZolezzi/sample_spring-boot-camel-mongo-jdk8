@@ -17,13 +17,14 @@
 package com.ewerk.prototype.proc.archiving.model;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static java.time.LocalDateTime.now;
+import static java.util.UUID.randomUUID;
 
 import com.ewerk.prototype.model.Person;
 import com.google.auto.value.AutoValue;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
@@ -47,8 +48,8 @@ public abstract class Archive {
 
   @Nonnull
   public static Archive with(@CheckForNull final List<Person> persons) {
-    checkArgument(persons != null && !persons.isEmpty(),
-      "Argument 'persons' must not be null or empty.");
-    return new AutoValue_Archive(UUID.randomUUID().toString(), persons, LocalDateTime.now());
+    checkArgument((persons != null) && !persons.isEmpty(),
+        "Argument 'persons' must not be null or empty.");
+    return new AutoValue_Archive(randomUUID().toString(), persons, now());
   }
 }

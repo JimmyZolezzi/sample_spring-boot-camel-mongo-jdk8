@@ -16,10 +16,11 @@
 
 package com.ewerk.prototype.proc.export.handler;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import com.ewerk.prototype.persistence.repositories.PersonRepository;
 import org.apache.camel.Handler;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +33,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ExportHandler {
-  private static final Logger LOG = LoggerFactory.getLogger(ExportHandler.class);
+  private static final Logger LOG = getLogger(ExportHandler.class);
 
   @Autowired
   private PersonRepository personRepository;

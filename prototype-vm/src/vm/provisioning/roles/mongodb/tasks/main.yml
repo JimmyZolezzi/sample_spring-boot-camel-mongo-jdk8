@@ -20,7 +20,7 @@
     name={{ item }}
     state=present
   with_items:
-    - mongodb-org={{mongoVersion}}
+    - mongodb-org
 
 - name: "Configuring MongoDB bind IP"
   lineinfile:

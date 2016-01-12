@@ -5,47 +5,57 @@ buildscript {
 
   dependencies {
     classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.7'
   }
 }
 
 plugins {
-  id "java"
-  id "jacoco"
-  id "info.solidsoft.pitest" version "1.1.1"
-  id "com.ewerk.gradle.plugins.integration-test" version "1.0.6"
-  id "com.ewerk.gradle.plugins.auto-value" version "1.0.1"
-  id "com.ewerk.gradle.plugins.querydsl" version "1.0.3"
+  id 'java'
+  id 'jacoco'
+  id 'info.solidsoft.pitest' version '1.1.1'
+  id 'com.ewerk.gradle.plugins.integration-test' version '1.0.8'
+  id 'com.ewerk.gradle.plugins.auto-value' version '1.0.6'
+  id 'com.ewerk.gradle.plugins.querydsl' version '1.0.5'
 }
 
+apply plugin: "propdeps"
 apply plugin: "spring-boot"
+
+configurations {
+  all*.exclude(group: 'commons-logging')
+  all*.exclude(group: 'org.apache.tomcat')
+  all*.exclude(module: 'spring-boot-starter-tomcat')
+}
 
 dependencies {
   // Spring boot
-  compile "org.springframework.boot:spring-boot-actuator"
-  compile "org.springframework.boot:spring-boot-starter-data-mongodb"
-  compile "org.springframework.boot:spring-boot-starter-logging"
-  compile "org.springframework.boot:spring-boot-starter-jetty"
-  compile("org.springframework.boot:spring-boot-starter-web") {
-    exclude module: "spring-boot-starter-tomcat"
+  compile 'org.springframework.boot:spring-boot-actuator'
+  optional 'org.springframework.boot:spring-boot-configuration-processor'
+  compile 'org.springframework.boot:spring-boot-starter-data-mongodb'
+  compile 'org.springframework.boot:spring-boot-starter-logging'
+  compile 'org.springframework.boot:spring-boot-starter-jetty'
+  compile('org.springframework.boot:spring-boot-starter-web') {
+    exclude module: 'spring-boot-starter-tomcat'
   }
 
   // Persistence
   compile "com.mysema.querydsl:querydsl-mongodb:$querydslVersion"
+  compile "com.mysema.querydsl:querydsl-apt:$querydslVersion"
 
   // Camel
   compile("org.apache.camel:camel-spring-javaconfig:$camelVersion") {
-    exclude group: "org.springframework", module: "spring-test"
+    exclude group: 'org.springframework', module: 'spring-test'
   }
   compile "org.apache.camel:camel-quartz2:$camelVersion"
 
   // Utils
-  compile "com.fasterxml.jackson.datatype:jackson-datatype-jsr310"
+  compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
   compile "com.google.guava:guava:$guavaVersion"
   compile "com.google.auto.value:auto-value:$autoValueVersion"
   compile "edu.washington.cs.types.checker:checker-framework:$checkerFrameworkVersion"
 
   // Testing
-  testCompile "org.springframework.boot:spring-boot-starter-test"
+  testCompile 'org.springframework.boot:spring-boot-starter-test'
   testCompile "org.testng:testng:$testngVersion"
   testCompile "com.jayway.restassured:rest-assured:$restAssuredVersion"
   testCompile "org.assertj:assertj-core:$assertjVersion"
@@ -55,11 +65,19 @@ querydsl {
   springDataMongo = true
 }
 
+autoValue {
+  library = "com.google.auto.value:auto-value:$autoValueVersion"
+}
+
+compileJava.dependsOn(processResources)
+
 test {
   useTestNG()
 
-  minHeapSize = "128m"
-  maxHeapSize = "512m"
+  minHeapSize = '128m'
+  maxHeapSize = '512m'
+
+  exclude '**/*IntegTest*'
 }
 
 integrationTest {
@@ -67,6 +85,9 @@ integrationTest {
 
   minHeapSize = "128m"
   maxHeapSize = "512m"
+
+  systemProperty 'spring.config.location', System.getProperty('spring.config.location')
+  systemProperty 'spring.profiles.active', System.getProperty('spring.profiles.active')
 }
 
 jar {
@@ -78,4 +99,9 @@ jar {
         "Built-Gradle": gradle.gradleVersion
     )
   }
+}
+
+task sourceJar(type: Jar) {
+  from sourceSets.main.allJava
+  classifier 'sources'
 }

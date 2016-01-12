@@ -18,10 +18,11 @@ package com.ewerk.prototype.persistence.repositories;
 
 import static com.ewerk.prototype.model.QPerson.person;
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Strings.isNullOrEmpty;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import com.ewerk.prototype.model.Person;
 import com.ewerk.prototype.persistence.UniqueViolationException;
-import com.google.common.base.Strings;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,18 +37,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class PersonRepositoryImpl implements PersonRepositoryCustom {
 
-  private static final Logger LOG = LoggerFactory.getLogger(LoggerFactory.class);
+  private static final Logger LOG = getLogger(LoggerFactory.class);
 
   @Autowired
   private PersonRepository personRepository;
 
   @SuppressWarnings("ConstantConditions")
   @Override
-  public Person create(Person person) {
+  public Person create(final Person person) {
     checkArgument(person != null, "The argument 'person' must not be null.");
 
-    String lastName = person.getLastName();
-    String firstName = person.getFirstName();
+    final String lastName = person.getLastName();
+    final String firstName = person.getFirstName();
 
     if (personRepository.findByLastNameAndFirstName(lastName, firstName) != null) {
       throw new UniqueViolationException("Person '%s, %s' already exists.", lastName, firstName);
@@ -59,10 +60,10 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
 
   @Override
   public Iterable<Person> locate(final String lastName, final String firstName) {
-    checkArgument(!Strings.isNullOrEmpty(lastName));
-    checkArgument(!Strings.isNullOrEmpty(firstName));
+    checkArgument(!isNullOrEmpty(lastName));
+    checkArgument(!isNullOrEmpty(firstName));
 
     return personRepository.findAll(
-      person.lastName.eq(lastName).and(person.firstName.eq(firstName)));
+        person.lastName.eq(lastName).and(person.firstName.eq(firstName)));
   }
 }

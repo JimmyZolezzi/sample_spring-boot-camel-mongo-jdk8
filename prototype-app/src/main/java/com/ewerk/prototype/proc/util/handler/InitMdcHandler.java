@@ -17,6 +17,7 @@
 package com.ewerk.prototype.proc.util.handler;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Strings.isNullOrEmpty;
 
 import org.apache.camel.Handler;
 import org.jboss.logging.MDC;
@@ -32,7 +33,7 @@ public class InitMdcHandler {
   private final String value;
 
   public InitMdcHandler(final String label, final String value) {
-    checkArgument(label != null && !label.isEmpty(), "Argument 'label' must not be null or empty.");
+    checkArgument(!isNullOrEmpty(label), "Argument 'label' must not be null or empty.");
     this.label = label;
     this.value = value;
   }

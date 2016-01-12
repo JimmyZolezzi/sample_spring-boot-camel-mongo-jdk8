@@ -27,8 +27,8 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author holgerstolzenberg
  * @since 0.0.4
  */
+@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 public class ProcessConfigurationIntegTest extends AbstractIntegTest {
-
   @Autowired
   private RouteBuilder exportRouteBuilder;
 

@@ -20,15 +20,15 @@ import static com.ewerk.prototype.proc.util.Routes.MDC_ROUTE_ID;
 import static com.ewerk.prototype.proc.util.Routes.MDC_UID;
 import static com.ewerk.prototype.proc.util.Routes.id;
 import static com.ewerk.prototype.proc.util.Routes.processId;
+import static com.ewerk.prototype.proc.util.UriBuilder.quartz;
+import static org.slf4j.LoggerFactory.getLogger;
 
 import com.ewerk.prototype.proc.archiving.handler.ArchiveHandler;
 import com.ewerk.prototype.proc.util.AbstractQuartzRouteBuilder;
-import com.ewerk.prototype.proc.util.UriBuilder;
 import com.ewerk.prototype.proc.util.handler.ClearMdcHandler;
 import com.ewerk.prototype.proc.util.handler.InitMdcHandler;
 import org.apache.camel.LoggingLevel;
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -44,13 +44,13 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class ArchiveRouteBuilder extends AbstractQuartzRouteBuilder {
-  private static final Logger LOG = LoggerFactory.getLogger(ArchiveRouteBuilder.class);
+  private static final Logger LOG = getLogger(ArchiveRouteBuilder.class);
 
   private static final String ROUTE_LABEL = "archiving";
 
   @Autowired
   public ArchiveRouteBuilder(@Value("${scheduler.cron-exp-archiving}") final String cronExpArchive,
-    @Value("${scheduler.auto-start}") final boolean schedulerAutoStart) {
+      @Value("${scheduler.auto-start}") final boolean schedulerAutoStart) {
     super(cronExpArchive, schedulerAutoStart);
   }
 
@@ -59,7 +59,7 @@ public class ArchiveRouteBuilder extends AbstractQuartzRouteBuilder {
     LOG.info("Configure {} route", ROUTE_LABEL);
 
     //@formatter:off
-    from(UriBuilder.quartz(ROUTE_LABEL, cronExp()))
+    from(quartz(ROUTE_LABEL, cronExp()))
       .autoStartup(schedulerAutoStart())
       .routeId(id(ArchiveRouteBuilder.class,ROUTE_LABEL))
         .bean(new InitMdcHandler(MDC_ROUTE_ID, ROUTE_LABEL))

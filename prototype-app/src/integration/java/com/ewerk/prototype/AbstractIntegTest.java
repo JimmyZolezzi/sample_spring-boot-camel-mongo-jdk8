@@ -16,6 +16,8 @@
 
 package com.ewerk.prototype;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 import com.ewerk.prototype.api.ApiConfiguration;
 import com.ewerk.prototype.persistence.PersistenceConfiguration;
 import org.slf4j.Logger;
@@ -38,7 +40,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * TestNG.<br/><br/>
  *
  * TestNG requires us to extend from {@link AbstractTestNGSpringContextTests} which also tries to
- * provide a mock servlet context, but that conflicts with {@link org.springframework.boot.test.SpringApplicationConfiguration}
+ * provide a mock servlet context, but that conflicts with {@link SpringApplicationConfiguration}
  * which is by default JUnit based.<br/><br/>
  *
  * See http://stackoverflow.com/questions/25537436/integration-testing-a-spring-boot-web-app-with-testng
@@ -50,12 +52,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
  * the integration tests, so that we can run our tests against a different database.
  *
  * @author holgerstolzenberg
- * @see org.springframework.test.context.ActiveProfiles
- * @see org.springframework.test.context.TestExecutionListeners
- * @see org.springframework.test.context.testng.AbstractTestNGSpringContextTests
- * @see org.springframework.test.context.web.WebAppConfiguration
- * @see org.springframework.boot.test.IntegrationTest
- * @see org.springframework.boot.test.SpringApplicationConfiguration
+ * @see ActiveProfiles
+ * @see TestExecutionListeners
+ * @see AbstractTestNGSpringContextTests
+ * @see WebAppConfiguration
+ * @see IntegrationTest
+ * @see SpringApplicationConfiguration
  * @since 0.0.3
  */
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
@@ -67,10 +69,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
   listeners = {DependencyInjectionTestExecutionListener.class,
     DirtiesContextTestExecutionListener.class})
 @WebAppConfiguration
-@IntegrationTest({"server.port=0"})
+@IntegrationTest("server.port=0")
 public abstract class AbstractIntegTest extends AbstractTestNGSpringContextTests {
-
-  protected static final Logger LOG = LoggerFactory.getLogger(AbstractIntegTest.class);
+  protected static final Logger LOG = getLogger(AbstractIntegTest.class);
 
   @Autowired
   private Environment environment;
@@ -78,8 +79,9 @@ public abstract class AbstractIntegTest extends AbstractTestNGSpringContextTests
   /**
    * Convenient accessor method. Provides the spring environment configuration.
    *
-   * @return The {@link org.springframework.core.env.Environment} of the tests
+   * @return The {@link Environment} of the tests
    */
+  @SuppressWarnings("unused")
   protected Environment environment() {
     return environment;
   }

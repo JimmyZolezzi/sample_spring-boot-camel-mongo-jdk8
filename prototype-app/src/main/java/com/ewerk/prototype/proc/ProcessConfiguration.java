@@ -31,7 +31,7 @@ import java.util.Properties;
  * Spring configuration class. Creates all beans that are involved in the export process.
  *
  * @author holgerstolzenberg
- * @see org.springframework.context.annotation.Configuration
+ * @see Configuration
  * @since 0.0.4
  */
 @Configuration
@@ -43,8 +43,9 @@ public class ProcessConfiguration {
   private RoutesBuilder archiveRouteBuilder;
 
   @Bean
-  public SpringCamelContext camelContext(ApplicationContext applicationContext) throws Exception {
-    SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
+  public SpringCamelContext camelContext(final ApplicationContext applicationContext)
+      throws Exception {
+    final SpringCamelContext camelContext = new SpringCamelContext(applicationContext);
     camelContext.addRoutes(exportRouteBuilder);
     camelContext.addRoutes(archiveRouteBuilder);
     return camelContext;
@@ -52,13 +53,13 @@ public class ProcessConfiguration {
 
   @Bean
   public QuartzComponent quartzComponent(
-    @Value("${scheduler.startup-delay-seconds}") final int startupDelaySeconds) {
-    Properties quartzProperties = new Properties();
-    quartzProperties.put("org.quartz.plugin.shutdownhook.class",
-      "org.quartz.plugins.management.ShutdownHookPlugin");
-    quartzProperties.put("org.quartz.plugin.shutdownhook.cleanShutdown", "true");
+      @Value("${scheduler.startup-delay-seconds}") final int startupDelaySeconds) {
+    final Properties quartzProperties = new Properties();
+    quartzProperties.setProperty("org.quartz.plugin.shutdownhook.class",
+        "org.quartz.plugins.management.ShutdownHookPlugin");
+    quartzProperties.setProperty("org.quartz.plugin.shutdownhook.cleanShutdown", "true");
 
-    QuartzComponent component = new QuartzComponent();
+    final QuartzComponent component = new QuartzComponent();
     component.setEnableJmx(false);
     component.setStartDelayedSeconds(startupDelaySeconds);
     component.setProperties(quartzProperties);

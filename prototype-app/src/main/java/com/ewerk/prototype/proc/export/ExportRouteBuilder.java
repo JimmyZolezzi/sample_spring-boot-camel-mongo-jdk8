@@ -20,10 +20,10 @@ import static com.ewerk.prototype.proc.util.Routes.MDC_ROUTE_ID;
 import static com.ewerk.prototype.proc.util.Routes.MDC_UID;
 import static com.ewerk.prototype.proc.util.Routes.id;
 import static com.ewerk.prototype.proc.util.Routes.processId;
+import static com.ewerk.prototype.proc.util.UriBuilder.quartz;
 
 import com.ewerk.prototype.proc.export.handler.ExportHandler;
 import com.ewerk.prototype.proc.util.AbstractQuartzRouteBuilder;
-import com.ewerk.prototype.proc.util.UriBuilder;
 import com.ewerk.prototype.proc.util.handler.ClearMdcHandler;
 import com.ewerk.prototype.proc.util.handler.InitMdcHandler;
 import org.apache.camel.LoggingLevel;
@@ -50,7 +50,7 @@ public class ExportRouteBuilder extends AbstractQuartzRouteBuilder {
 
   @Autowired
   public ExportRouteBuilder(@Value("${scheduler.cron-exp-export}") final String cronExpExport,
-    @Value("${scheduler.auto-start}") final boolean schedulerAutoStart) {
+      @Value("${scheduler.auto-start}") final boolean schedulerAutoStart) {
     super(cronExpExport, schedulerAutoStart);
   }
 
@@ -61,7 +61,7 @@ public class ExportRouteBuilder extends AbstractQuartzRouteBuilder {
     final String routeId = id(ExportRouteBuilder.class, ROUTE_LABEL);
 
     //@formatter:off
-    from(UriBuilder.quartz(ROUTE_LABEL, cronExp()))
+    from(quartz(ROUTE_LABEL, cronExp()))
       .autoStartup(schedulerAutoStart())
       .routeId(routeId)
         .bean(new InitMdcHandler(MDC_ROUTE_ID, ROUTE_LABEL))

@@ -16,127 +16,56 @@
 
 package com.ewerk.prototype.model;
 
+import static java.time.LocalDate.of;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.ewerk.prototype.AbstractUnitTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.time.Month;
 
 public class PersonTest extends AbstractUnitTest {
-  @Test
-  public void testSetGetId() {
-    final String id = "2s3e4";
-    Person person = new Person();
-    person.setId(id);
-    assertThat(person.getId()).isEqualTo(id);
+  private static final String ID = "SJ";
+  private static final String LAST_NAME = "Smith";
+  private static final String FIRST_NAME = "John";
+  private static final LocalDate BIRTHDAY = of(2014, Month.APRIL, 1);
+
+  private Person person;
+
+  @BeforeMethod
+  public void setup() {
+    person = new Person();
+    person.setId(ID);
+    person.setLastName(LAST_NAME);
+    person.setFirstName(FIRST_NAME);
+    person.setBirthday(BIRTHDAY);
   }
 
   @Test
-  public void testSetGetLastName() {
-    final String lastName = "2s3e4";
-    Person person = new Person();
-    person.setLastName(lastName);
-    assertThat(person.getLastName()).isEqualTo(lastName);
+  public void testGetId() {
+    assertThat(person.getId()).isEqualTo(ID);
   }
 
   @Test
-  public void testSetGetFirstName() {
-    final String lastName = "2s3e4";
-    Person person = new Person();
-    person.setFirstName(lastName);
-    assertThat(person.getFirstName()).isEqualTo(lastName);
+  public void testGetLastName() {
+    assertThat(person.getLastName()).isEqualTo(LAST_NAME);
   }
 
   @Test
-  public void testSetGetBirthday() {
-    final LocalDate now = LocalDate.now();
-    Person person = new Person();
-    person.setBirthday(now);
-    assertThat(person.getBirthday()).isEqualTo(now);
+  public void testGetFirstName() {
+    assertThat(person.getFirstName()).isEqualTo(FIRST_NAME);
   }
 
   @Test
-  public void testNotEqualThroughFirstName() {
-    final LocalDate now = LocalDate.now();
-
-    Person dave = new Person();
-    dave.setFirstName("Dave");
-    dave.setLastName("Matthews");
-    dave.setBirthday(now);
-
-    Person david = new Person();
-    david.setFirstName("David");
-    david.setLastName("Matthews");
-    david.setBirthday(now);
-
-    assertThat(dave).isNotEqualTo(david);
-  }
-
-  @Test
-  public void testNotEqualThroughLastName() {
-    final LocalDate now = LocalDate.now();
-
-    Person daveA = new Person();
-    daveA.setFirstName("Dave");
-    daveA.setLastName("Matthews");
-    daveA.setBirthday(now);
-
-    Person daveB = new Person();
-    daveB.setFirstName("Dave");
-    daveB.setLastName("Morris");
-    daveB.setBirthday(now);
-
-    assertThat(daveA).isNotEqualTo(daveB);
-  }
-
-  @Test
-  public void testNotEqualByThroughBirthday() {
-    Person daveA = new Person();
-    daveA.setFirstName("Dave");
-    daveA.setLastName("Matthews");
-    daveA.setBirthday(LocalDate.of(2000, Month.DECEMBER, 1));
-
-    Person daveB = new Person();
-    daveB.setFirstName("Dave");
-    daveB.setLastName("Matthews");
-    daveB.setBirthday(LocalDate.of(2000, Month.NOVEMBER, 1));
-
-    assertThat(daveA).isNotEqualTo(daveB);
-  }
-
-  @Test
-  public void testEqualityAndHashCode() {
-    final LocalDate birthday = LocalDate.of(2000, Month.DECEMBER, 1);
-    final String firstName = "Dave";
-    final String lastName = "Matthews";
-
-    Person daveA = new Person();
-    daveA.setFirstName(firstName);
-    daveA.setLastName(lastName);
-    daveA.setBirthday(birthday);
-
-    Person daveB = new Person();
-    daveB.setFirstName(firstName);
-    daveB.setLastName(lastName);
-    daveB.setBirthday(birthday);
-
-    assertThat(daveA.equals(daveB)).isTrue();
-    assertThat(daveA.hashCode()).isEqualTo(daveB.hashCode());
+  public void testGetBirthday() {
+    assertThat(person.getBirthday()).isEqualTo(BIRTHDAY);
   }
 
   @Test
   public void testToString() {
-    LocalDate birthday = LocalDate.of(2014, Month.APRIL, 1);
-
-    Person person = new Person();
-    person.setId("1s3e");
-    person.setFirstName("John");
-    person.setLastName("Smith");
-    person.setBirthday(birthday);
-
     assertThat(person.toString()).isEqualTo(
-      "Person{id=1s3e, lastName=Smith, firstName=John, birthday=2014-04-01}");
+        "Person{id=SJ, lastName=Smith, firstName=John, birthday=2014-04-01}");
   }
 }
